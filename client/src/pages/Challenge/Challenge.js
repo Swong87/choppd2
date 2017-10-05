@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import RecipeModal from "../../components/ModalButton/RecipeModal.js";
 
 
 class Challenge extends Component {
@@ -89,6 +90,7 @@ class Challenge extends Component {
                   <strong>
                     {recipe.title}
                   </strong>
+                  <RecipeModal />
                   <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
                     ✗
                   </span>
