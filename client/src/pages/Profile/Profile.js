@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import ModalButton from "../../components/ModalButton/ModalButton.js";
-
+import PicUploader from "../../components/PicUploader";
 
 class Profile extends Component {
   state = {
@@ -39,6 +39,7 @@ class Profile extends Component {
         <div className="container">
           <div className="row">
             <div className="text-center col-sm-3">
+              <PicUploader />
               <img src="/profilePic.JPG" width="200px" alt="pic" />
             </div>
             <div className="text-center col-sm-9">
