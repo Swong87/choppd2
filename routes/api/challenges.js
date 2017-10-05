@@ -10,8 +10,6 @@ router.route("/")
 router
   .route("/:id")
   .get(challengesController.findOne)
-  .post(challengesController.createRecipe)
-  .put(challengesController.removeChallenge)
-  .delete(challengesController.removeRecipe);
+  .delete(challengesController.removeChallenge);
 
 module.exports = router;
