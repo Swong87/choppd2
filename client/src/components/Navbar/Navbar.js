@@ -5,12 +5,16 @@ import "./Navbar.css";
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 class Navbar extends Component {
 
-  signOut = () => {
+  // signOut = () => {
     // var auth2 = gapi.auth2.getAuthInstance();
     // auth2.signOut().then(function () {
-      console.log('User signed out.');
+      // console.log('User signed out.');
     // });
-  };
+  // };
+
+  // <li>
+  //   <a href="/" onClick={this.signOut}>Sign out</a>
+  // </li>
 
   render() {
     return (
@@ -23,25 +27,20 @@ class Navbar extends Component {
               </Link>
             </div>
             <ul className="nav navbar-nav">
-              <li
-                className={
-                  window.location.pathname === "/"
-                    ? "active"
-                    : ""
-                }
-              >
+
+              <li className={window.location.pathname === "/" ? "active" : ""}>
               </li>
-              <li
-                className={window.location.pathname === "/challenges" ? "active" : ""}
-              >
+
+              <li className={window.location.pathname === "/challenges" ? "active" : ""}>
                 <Link to="/challenges">Discover</Link>
               </li>
-              <li className={window.location.pathname === "/search" ? "active" : ""}>
+
+              <li className={window.location.pathname === "/profile" ? "active" : ""}>
                 <Link to="/profile">Profile</Link>
               </li>
-              <li>
-                <a href="/" onClick={this.signOut}>Sign out</a>
-              </li>
+
+              
+
             </ul>
           </div>
         </nav>

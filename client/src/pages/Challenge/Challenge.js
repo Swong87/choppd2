@@ -12,18 +12,18 @@ class Challenge extends Component {
 
   componentDidMount() {
     API.getChallenge(this.props.match.params.id)
-      .then(
-        res => this.setState({ challenge: res.data }),
+      .then(res => 
+        this.setState({ challenge: res.data }),
         this.loadRecipes()
       )
     .catch(err => console.log(err));
   };
 
   loadRecipes = () => {
-    API.getRecipes(this.state.challenge._id)
+    API.getChallenge(this.props.match.params.id)
       .then(res =>
         this.setState({ 
-          recipes: res.data, 
+          recipes: res.data.recipe, 
           title: ""
         })
       ).catch(err => console.log(err));
@@ -47,7 +47,7 @@ class Challenge extends Component {
     if (this.state.title) {
       API.saveRecipe({
         title: this.state.title
-      }, this.state.challenge._id)
+      }, this.props.match.params.id)
         .then(res => this.loadRecipes())
         .catch(err => console.log(err));
     }
