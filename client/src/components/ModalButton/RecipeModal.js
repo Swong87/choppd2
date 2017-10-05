@@ -36,7 +36,7 @@ class RecipeModal extends Component {
     render() {
       	return (
       	  <div>
-      	    <button className="btn btn-default" onClick={this.openModal}>Edit Profile</button>
+      	    <button className="btn btn-default" onClick={this.openModal}>View Recipe</button>
       	    <Modal
       	      isOpen={this.state.modalIsOpen}
       	      onRequestClose={this.closeModal}
