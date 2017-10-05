@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 
 const App = () =>
   <Router>
+    <div>
       <Switch>
         <Route exact path="/" component={About} />
         <Route exact path="/about" component={About} />
@@ -16,6 +17,7 @@ const App = () =>
         <Route exact path="/profile" component={Profile} />
       </Switch>
       <Footer />
+    </div>
   </Router>;
 
 export default App;
