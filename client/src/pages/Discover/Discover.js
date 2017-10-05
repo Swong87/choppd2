@@ -62,7 +62,7 @@ class Discover extends Component {
               />
             
               <button 
-                disabled={!(this.state.title)}
+
                 onClick={this.handleFormSubmit} 
                 className="btn btn-success"
               >
