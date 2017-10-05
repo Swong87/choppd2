@@ -46,7 +46,7 @@ class Challenge extends Component {
     event.preventDefault();
     if (this.state.title) {
       API.saveRecipe({
-        recipe: this.state.title
+        title: this.state.title
       }, this.props.match.params.id)
         .then(res => this.loadRecipes())
         .catch(err => console.log(err));
