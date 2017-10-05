@@ -12,12 +12,6 @@ module.exports = {
   findAll: function(req, res) {
     db.Challenge.find({})
       .sort({ date: -1 })
-      .populate("recipe")
-      .exec(function(error, doc) {
-        if (error) {
-          res.send(error);
-        };
-      })
       .then(dbModel => res.json(dbModel))
       .catch(err => console.log(err));
   },

@@ -14,10 +14,6 @@ const recipeSchema = new Schema({
   	type: Schema.Types.ObjectId,
   	ref: 'User'
   },
-  _challengeId: {
-  	type: Schema.Types.ObjectId,
-  	ref: 'Challenge'
-  },
   ingredients: Array,
   method: { 
   	type: String, 
