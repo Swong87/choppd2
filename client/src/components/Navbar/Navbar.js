@@ -32,9 +32,9 @@ class Navbar extends Component {
               >
               </li>
               <li
-                className={window.location.pathname === "/discover" ? "active" : ""}
+                className={window.location.pathname === "/challenges" ? "active" : ""}
               >
-                <Link to="/discover">Discover</Link>
+                <Link to="/challenges">Discover</Link>
               </li>
               <li className={window.location.pathname === "/search" ? "active" : ""}>
                 <Link to="/profile">Profile</Link>
