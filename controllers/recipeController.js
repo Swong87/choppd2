@@ -10,7 +10,7 @@ const db = require("../models");
 module.exports = {
   // Get all Challenges: app.get("/discover", 
   findAll: function(req, res) {
-    db.Recipe.find({})
+    db.Recipe.find({ })
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => console.log(err));
