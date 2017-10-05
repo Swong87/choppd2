@@ -11,13 +11,13 @@ module.exports = {
   // Get all Challenges: app.get("/discover", 
   findAll: function(req, res) {
     db.Challenge.find({})
+      .sort({ date: -1 })
       .populate("recipe")
       .exec(function(error, doc) {
         if (error) {
           res.send(error);
         };
       })
-      .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => console.log(err));
   },
