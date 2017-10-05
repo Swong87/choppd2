@@ -17,7 +17,7 @@ export default {
   },
 
   saveRecipe: function(recipeData, id) {
-    return axios.post("/api/recipes/" + id, recipeData);
+    return axios.post("/api/challenges/" + id, recipeData);
   },
 
   getChallenges: function() {
@@ -34,5 +34,8 @@ export default {
 
   saveChallenge: function(challengeData) {
     return axios.post("/api/challenges", challengeData);
+  },
+  updateChallenge: function(id) {
+    return axios.put("/api/challenges/" + id)
   }
 };
