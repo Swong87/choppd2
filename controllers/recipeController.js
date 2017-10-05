@@ -27,7 +27,7 @@ module.exports = {
   // Create new recipe: app.post("/challenge/:id", 
   createRecipe: function(req, res) {
     const selected = req.params.id;
-    const newRecipe = new Recipe(req.body);
+    const newRecipe = new db.Recipe(req.body);
     newRecipe.save(function(error, doc) {
       if(error){
         res.send(error);
