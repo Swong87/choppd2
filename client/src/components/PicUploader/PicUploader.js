@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ImagesUploader from 'react-images-uploader';
 import 'react-images-uploader/styles.css';
-import 'react-images-uploader/font.css';
 
 class PicUploader extends Component {
     render() {
