@@ -4,20 +4,20 @@ import axios from "axios";
 
 export default {
   
-  getRecipes: function(id) {
-    return axios.get("/api/recipes/" + id);
+  getRecipes: function() {
+    return axios.get("/api/recipes/");
   },
  
   getRecipe: function(id) {
-    return axios.get("/api/recipes/" + id);
+    return axios.get("/api/recipe/" + id);
   },
 
   deleteRecipe: function(id) {
-    return axios.delete("/api/recipes/" + id);
+    return axios.delete("/api/recipe/" + id);
   },
 
   saveRecipe: function(recipeData, id) {
-    return axios.post("/api/recipes" + id, recipeData);
+    return axios.post("/api/recipe" + id, recipeData);
   },
 
   getChallenges: function() {
@@ -29,7 +29,7 @@ export default {
   },
 
   deleteChallenge: function(id) {
-    return axios.delete("/api/discover/" + id);
+    return axios.delete("/api/challenge/" + id);
   },
 
   saveChallenge: function(challengeData) {
