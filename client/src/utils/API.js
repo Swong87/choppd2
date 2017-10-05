@@ -5,7 +5,7 @@ import axios from "axios";
 export default {
   
   getRecipes: function() {
-    return axios.get("/api/recipes/");
+    return axios.get("/api/recipes");
   },
  
   getRecipe: function(id) {
@@ -17,7 +17,7 @@ export default {
   },
 
   saveRecipe: function(recipeData, id) {
-    return axios.post("/api/recipe" + id, recipeData);
+    return axios.post("/api/recipes/" + id, recipeData);
   },
 
   getChallenges: function() {
