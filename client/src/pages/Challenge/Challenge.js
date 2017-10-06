@@ -56,6 +56,9 @@ class Challenge extends Component {
 
   render() {
     console.log(this.state.challenge);
+    console.log(this.state.challenge.title);
+    console.log(this.state.challenge.image);
+    console.log(this.state.challenge.ingredients);
     return (
       <div>
         <div className="container">
