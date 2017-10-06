@@ -56,10 +56,6 @@ class Challenge extends Component {
   };
 
   render() {
-    console.log(this.state.challenge);
-    console.log(this.state.challenge.title);
-    console.log(this.state.challenge.image);
-    console.log(this.state.challenge.ingredients);
     return (
       <div>
         <div className="container">
@@ -68,11 +64,7 @@ class Challenge extends Component {
               {this.state.challenge.title}
             </h1>
             <img width='500px' src={this.state.challenge.image} />
-            <ul>
-              {this.state.challenge.ingredients.map(item => (
-                <li>{item}</li>
-              ))}
-            </ul>
+         
           </div>
           <form>
             <div className="form-group">
