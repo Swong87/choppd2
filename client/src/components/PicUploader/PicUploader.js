@@ -7,7 +7,7 @@ class PicUploader extends Component {
     render() {
         return (
             <ImagesUploader
-                url="https://localhost:9090/notmultiple"
+                url="/notmultiple"
                 optimisticPreviews
                 multiple={false}
                 onLoadEnd={(err) => {
