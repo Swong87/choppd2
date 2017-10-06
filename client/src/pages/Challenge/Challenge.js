@@ -55,6 +55,7 @@ class Challenge extends Component {
   };
 
   render() {
+    console.log(this.state.challenge.ingredients);
     return (
       <div>
         <div className="container">
