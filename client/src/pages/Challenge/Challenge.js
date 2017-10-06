@@ -64,7 +64,7 @@ class Challenge extends Component {
               {this.state.challenge.title}
             </h1>
             <img width='500px' src={this.state.challenge.image} />
-         
+            <span>{this.state.challenge.image}</span>
           </div>
           <form>
             <div className="form-group">
