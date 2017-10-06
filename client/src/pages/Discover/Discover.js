@@ -95,16 +95,16 @@ class Discover extends Component {
                       {challenge.title}
                     </strong>
                   </Link>
-                    <span className="btn" onClick={() => this.deleteChallenge(challenge._id)}>
-                    ✗
-                    </span>
-                    <img width='200px' src={challenge.image} />
-                    <ul>
-                      {challenge.ingredients.map(item => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  
+                  <span className="btn" onClick={() => this.deleteChallenge(challenge._id)}>
+                  ✗
+                  </span>
+                  <br />
+                  <img width='200px' src={challenge.image} />
+                  <ul>
+                    {challenge.ingredients.map(item => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>
