@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.static("client/build"));
 
 app.use('/static', express.static('./server/static'));
-app.use(corsPrefetch);
+app.use(corsPrefetch());
 app.post('/notmultiple', imagesUpload(
     './server/static/files',
     'http://localhost:9090/static/files'
