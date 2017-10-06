@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const routes = require("./routes");
-import corsPrefetch from 'cors-prefetch-middleware';
-import imagesUpload from 'images-upload-middleware';
+const corsPrefetch = require('cors-prefetch-middleware');
+const imagesUpload = require('images-upload-middleware');
 // Initialize Express
 const app = express();
 const PORT = process.env.PORT || 3001;
