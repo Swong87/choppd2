@@ -94,6 +94,7 @@ class Discover extends Component {
                     <strong>
                       {challenge.title}
                     </strong>
+                  </Link>
                     <span className="btn" onClick={() => this.deleteChallenge(challenge._id)}>
                     ✗
                     </span>
@@ -103,7 +104,7 @@ class Discover extends Component {
                         <li>{item}</li>
                       ))}
                     </ul>
-                  </Link>
+                  
                 </li>
               ))}
             </ul>
