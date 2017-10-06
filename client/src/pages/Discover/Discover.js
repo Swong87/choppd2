@@ -94,7 +94,7 @@ class Discover extends Component {
                     <strong>
                       {challenge.title}
                     </strong>
-                    <img src={challenge.image} />
+                    <img width='50px' src={challenge.image} />
                     <ul>
                       {challenge.ingredients.map(item => (
                         <li>{item}</li>
