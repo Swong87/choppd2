@@ -7,7 +7,9 @@ class Discover extends Component {
 
   state = {
     challenges: [],
-    title: ""
+    title: "",
+    image: "",
+    ingredients: []
   };
 
   componentDidMount() {
@@ -18,8 +20,7 @@ class Discover extends Component {
     API.getChallenges()
       .then(res =>
         this.setState({ 
-          challenges: res.data, 
-          title: ""
+          challenges: res.data
         })
       ).catch(err => console.log(err));
   };
@@ -41,7 +42,9 @@ class Discover extends Component {
     event.preventDefault();
     if (this.state.title) {
       API.saveChallenge({
-        title: this.state.title
+        title: this.state.title,
+        image: this.state.image,
+        ingredients: this.state.ingredients.split(', ')
       })
         .then(res => this.loadChallenges())
         .catch(err => console.log(err));
@@ -60,7 +63,18 @@ class Discover extends Component {
                 name="title"
                 placeholder="Title (required)"
               />
-            
+              <input  
+                value={this.state.image}
+                onChange={this.handleInputChange}
+                name="image"
+                placeholder="Image URL"
+              />
+              <input  
+                value={this.state.ingredients}
+                onChange={this.handleInputChange}
+                name="ingredients"
+                placeholder="Ingredients (seperated by commas)"
+              />
               <button 
                 disabled={!(this.state.title)}
                 onClick={this.handleFormSubmit} 
@@ -80,6 +94,12 @@ class Discover extends Component {
                     <strong>
                       {challenge.title}
                     </strong>
+                    <img src={challenge.image} />
+                    <ul>
+                      {challenge.ingredients.map(item => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
                   </Link>
                   <span className="btn" onClick={() => this.deleteChallenge(challenge._id)}>
                     ✗
