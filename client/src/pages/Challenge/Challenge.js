@@ -24,6 +24,7 @@ class Challenge extends Component {
     API.getChallenge(this.props.match.params.id)
       .then(res =>
         this.setState({ 
+          challenge: res.data,
           recipes: res.data.recipe, 
           title: ""
         })
@@ -68,7 +69,7 @@ class Challenge extends Component {
             </h1>
             <img width='500px' src={this.state.challenge.image} />
             <ul>
-              {this.state.challenge.title.map(item => (
+              {this.state.challenge.ingredients.map(item => (
                 <li>{item}</li>
               ))}
             </ul>
