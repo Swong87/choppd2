@@ -101,6 +101,7 @@ class Discover extends Component {
                   <br />
                   <img width='200px' src={challenge.image} />
                   <ul>
+                    {console.log(challenge.ingredients)}
                     {challenge.ingredients.map(item => (
                       <li>{item}</li>
                     ))}
