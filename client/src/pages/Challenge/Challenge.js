@@ -6,7 +6,7 @@ import RecipeModal from "../../components/ModalButton/RecipeModal.js";
 class Challenge extends Component {
 
   state = {
-    challenge: {},
+    challenge: [],
     recipes: [],
     title: ""
   };
@@ -62,7 +62,7 @@ class Challenge extends Component {
     return (
       <div>
         <div className="container">
-          {this.state.challenge ? (
+          {this.state.challenge.length ? (
             <div className="jumbotron text-center">
               <h1>
                 {this.state.challenge.title}
