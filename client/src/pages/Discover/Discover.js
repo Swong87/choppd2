@@ -40,18 +40,11 @@ class Discover extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const iArray = [];
-    this.state.ingredients.split(
-      ', ', 
-      item => (
-          iArray.push(item)
-      )
-    )
     if (this.state.title) {
       API.saveChallenge({
         title: this.state.title,
         image: this.state.image,
-        ingredients: iArray
+        ingredients: this.state.ingredients
       })
         .then(res => this.loadChallenges())
         .catch(err => console.log(err));
