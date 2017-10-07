@@ -41,6 +41,7 @@ class ModalButton extends Component {
       	      onRequestClose={this.closeModal}
       	      style={customStyles}
       	      contentLabel="Example Modal"
+      	      bodyOpenClassName="modal-dialog"
       	    >
       	    	<div className="modal-dialog" role="document">
 				    <div className="modal-content">
