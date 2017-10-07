@@ -62,7 +62,7 @@ class Challenge extends Component {
     return (
       <div>
         <div className="container">
-          {this.state.challenge.length ? (
+          {this.state.challenge ? (
             <div className="jumbotron text-center">
               <h1>
                 {this.state.challenge.title}
