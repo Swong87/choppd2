@@ -63,8 +63,8 @@ class Challenge extends Component {
             <img width='500px' src={this.state.challenge.image} />
             <ul>
               {this.state.challenge.ingredients}
-              {this.state.recipes.map(item => (
-                <li>{item}</li>
+              {this.state.recipes.map((item, i) => (
+                <li key={i}>{item}</li>
               ))}
             </ul>
           </div>
