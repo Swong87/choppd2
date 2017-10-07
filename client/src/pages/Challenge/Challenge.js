@@ -74,7 +74,7 @@ class Challenge extends Component {
             <img width='500px' src={this.state.challenge.image} />
           </div>
         </div>
-        <div className="container">
+        <div className="container text-center">
           <h3>Basket Ingredients</h3>
           {ingredients.length ? (
             <ul>
