@@ -76,7 +76,7 @@ class Challenge extends Component {
         <div className="container">
           {ingredients.length ? (
               {ingredients.map((items, i) => (
-                <span key={i}>| {items} |</span>
+                <span key={i}> {items} </span>
               ))}
           ) : (
             <h3>No Results to Display</h3>
