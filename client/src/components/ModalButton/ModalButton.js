@@ -36,42 +36,42 @@ class ModalButton extends Component {
       	return (
       	  <div>
       	    <button className="btn btn-default" onClick={this.openModal}>Edit Profile</button>
-      	    <Modal
+      	    <Modal className="modal-dialog"
       	      isOpen={this.state.modalIsOpen}
       	      onRequestClose={this.closeModal}
       	      style={customStyles}
       	      contentLabel="Example Modal"
       	    >
-      	    	<div className="modal-dialog" role="document">
-				    <div className="modal-content">
-				      	<div className="modal-header">
-				        	<h3 className="modal-title" id="commentModalLabel">
-				          		Edit Profile
-				          		<button type="button" className="close" onClick={this.closeModal} aria-label="Close">
-				            		<span aria-hidden="true">&times;</span>
-				          		</button>
-				        	</h3>
-				      	</div>
-				      	<div className="modal-body">
+      	    	
+			    <div className="modal-content">
+			      	<div className="modal-header">
+			        	<h3 className="modal-title" id="commentModalLabel">
+			          		Edit Profile
+			          		<button type="button" className="close" onClick={this.closeModal} aria-label="Close">
+			            		<span aria-hidden="true">&times;</span>
+			          		</button>
+			        	</h3>
+			      	</div>
+			      	<div className="modal-body">
+						<label>Bio Summary</label>
+			        	<form id="commentForm">
+						
+			          		<textarea rows="5" cols="75" placeholder="Bio Summary" form="commentForm"></textarea>
 
-				        	<form id="commentForm">
-							
-				          		<textarea rows="5" cols="75" placeholder="Say something about this article..." form="commentForm"></textarea>
+			          		<input id="comment" name="comment" value="true" type="hidden" />
 
-				          		<input id="comment" name="comment" value="true" type="hidden" />
+			        	</form>
 
-				        	</form>
+			      	</div>
+			      	<div className="modal-footer">
 
-				      	</div>
-				      	<div className="modal-footer">
+			        	<button type="button" className="btn btn-secondary" onClick={this.closeModal}>Close</button>
 
-				        	<button type="button" className="btn btn-secondary" onClick={this.closeModal}>Close</button>
+			        	<button id="savenote" type="button" className="btn btn-primary">Submit</button>
 
-				        	<button id="savenote" type="button" className="btn btn-primary">Submit</button>
+			      	</div>
+			    </div>
 
-				      	</div>
-				    </div>
-				</div>
       	    </Modal>
       	  </div>
       );
