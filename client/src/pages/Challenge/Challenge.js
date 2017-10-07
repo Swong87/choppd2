@@ -64,44 +64,46 @@ class Challenge extends Component {
     return (
       <div>
         <div className="container">
+          <div className="jumbotron text-center">
+            <h1>
+              {this.state.challenge.title}
+            </h1>
+            <img width='500px' src={this.state.challenge.image} />
+          </div>
+        </div>
+        <div className="container">
           {this.state.challenge.length ? (
-            <div className="jumbotron text-center">
-              <h1>
-                {this.state.challenge.title}
-              </h1>
-              <img width='500px' src={this.state.challenge.image} />
-              {console.log(this.state.challenge.ingredients)}
-              <ul>
-                {this.state.challenge.ingredients.map(items => (
-                  <li>
+            <ul>
+              {this.state.challenge.ingredients.map((items, i) => (
+                <li key={i}>
+                  <strong>
                     {items}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            ) : (
+                  </strong>
+                </li>
+              ))}
+            </ul>
+          ) : (
             <h3>No Results to Display</h3>
           )}
-          
-          <form>
-            <div className="form-group">
-              <input  
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-            
-              <button 
-                disabled={!(this.state.title)}
-                onClick={this.handleFormSubmit} 
-                className="btn btn-success"
-              >
-                Submit Recipe
-              </button>
-            </div>
-          </form>
         </div>
+        <form>
+          <div className="form-group">
+            <input  
+              value={this.state.title}
+              onChange={this.handleInputChange}
+              name="title"
+              placeholder="Title (required)"
+            />
+          
+            <button 
+              disabled={!(this.state.title)}
+              onClick={this.handleFormSubmit} 
+              className="btn btn-success"
+            >
+              Submit Recipe
+            </button>
+          </div>
+        </form>
         <div className="container">
           {this.state.recipes.length ? (
             <ul>
