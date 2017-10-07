@@ -62,14 +62,25 @@ class Challenge extends Component {
     return (
       <div>
         <div className="container">
-          <div className="jumbotron text-center">
-            <h1>
-              {this.state.challenge.title}
-            </h1>
-            <img width='500px' src={this.state.challenge.image} />
-            {console.log(this.state.challenge.ingredients)}
-            <p>{this.state.challenge.ingredients}</p>
-          </div>
+          {this.state.challenge.length ? (
+            <div className="jumbotron text-center">
+              <h1>
+                {this.state.challenge.title}
+              </h1>
+              <img width='500px' src={this.state.challenge.image} />
+              {console.log(this.state.challenge.ingredients)}
+              <ul>
+                {this.state.challenge.ingredients.map(items => (
+                  <li>
+                    {items}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            ) : (
+            <h3>No Results to Display</h3>
+          )}
+          
           <form>
             <div className="form-group">
               <input  
