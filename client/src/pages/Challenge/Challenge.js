@@ -12,11 +12,7 @@ class Challenge extends Component {
   };
 
   componentDidMount() {
-    API.getChallenge(this.props.match.params.id)
-      .then(res => 
-        this.setState({ challenge: res.data }),
-        this.loadRecipes()
-      )
+    this.loadRecipes()
     .catch(err => console.log(err));
   };
 
