@@ -13,6 +13,7 @@ class Challenge extends Component {
 
   componentDidMount() {
     this.loadChallenge();
+    this.loadRecipes();
   };
 
   loadChallenge = () => {
