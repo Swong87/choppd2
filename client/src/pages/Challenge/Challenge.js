@@ -8,7 +8,6 @@ class Challenge extends Component {
   state = {
     challenge: {},
     recipes: [],
-    ingredients: [],
     title: ""
   };
 
@@ -21,8 +20,7 @@ class Challenge extends Component {
       .then(res =>
         this.setState({ 
           challenge: res.data,
-          recipes: res.data.recipe, 
-          ingredients: res.data.ingredients,
+          recipes: res.data.recipe,
           title: ""
         }))
       .catch(err => console.log(err));
@@ -61,12 +59,6 @@ class Challenge extends Component {
               {this.state.challenge.title}
             </h1>
             <img width='500px' src={this.state.challenge.image} />
-            <ul>
-              {this.state.challenge.ingredients}
-              {this.state.recipes.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
           </div>
           <form>
             <div className="form-group">
