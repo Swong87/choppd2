@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import RecipeModal from "../../components/ModalButton/RecipeModal.js";
 
+let ingredients = [];
 
 class Challenge extends Component {
 
@@ -22,7 +23,8 @@ class Challenge extends Component {
         console.log(res.data),
         this.setState({ 
           challenge: res.data
-        })
+        }),
+        ingredients = res.data.ingredients
       })
       .catch(err => console.log(err));
   };
@@ -74,7 +76,7 @@ class Challenge extends Component {
         <div className="container">
           {this.state.challenge.length ? (
             <ul>
-              {this.state.challenge.ingredients.map((items, i) => (
+              {ingredients.map((items, i) => (
                 <li key={i}>
                   <strong>
                     {items}
