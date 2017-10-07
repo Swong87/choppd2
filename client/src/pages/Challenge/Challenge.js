@@ -19,9 +19,7 @@ class Challenge extends Component {
     API.getChallenge(this.props.match.params.id)
       .then(res =>
         this.setState({ 
-          challenge: res.data,
-          recipes: res.data.recipe,
-          title: ""
+          challenge: res.data
         }))
       .catch(err => console.log(err));
   };
