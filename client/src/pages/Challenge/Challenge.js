@@ -74,7 +74,7 @@ class Challenge extends Component {
           </div>
         </div>
         <div className="container">
-          {this.state.challenge.length ? (
+          {ingredients.length ? (
             <ul>
               {ingredients.map((items, i) => (
                 <li key={i}>
