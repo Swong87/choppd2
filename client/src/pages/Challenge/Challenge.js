@@ -8,12 +8,12 @@ class Challenge extends Component {
   state = {
     challenge: {},
     recipes: [],
+    ingredients: [],
     title: ""
   };
 
   componentDidMount() {
-    this.loadRecipes()
-    .catch(err => console.log(err));
+    this.loadRecipes();
   };
 
   loadRecipes = () => {
@@ -22,6 +22,7 @@ class Challenge extends Component {
         this.setState({ 
           challenge: res.data,
           recipes: res.data.recipe, 
+          ingredients: res.data.ingredients,
           title: ""
         })
       ).catch(err => console.log(err));
@@ -62,6 +63,9 @@ class Challenge extends Component {
             <img width='500px' src={this.state.challenge.image} />
             <ul>
               {this.state.challenge.ingredients}
+              {this.state.recipes.map(item => (
+                <span>| {item} |</span>
+              ))}
             </ul>
           </div>
           <form>
