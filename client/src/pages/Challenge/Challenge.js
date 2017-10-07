@@ -33,7 +33,8 @@ class Challenge extends Component {
     API.getChallenge(this.props.match.params.id)
       .then(res =>
         this.setState({ 
-          recipes: res.data.recipe
+          recipes: res.data.recipe,
+          title: ""
         }))
       .catch(err => console.log(err));
   };
@@ -89,24 +90,26 @@ class Challenge extends Component {
             <h3>No Results to Display</h3>
           )}
         </div>
-        <form>
-          <div className="form-group">
-            <input  
-              value={this.state.title}
-              onChange={this.handleInputChange}
-              name="title"
-              placeholder="Title (required)"
-            />
-          
-            <button 
-              disabled={!(this.state.title)}
-              onClick={this.handleFormSubmit} 
-              className="btn btn-success"
-            >
-              Submit Recipe
-            </button>
-          </div>
-        </form>
+        <div className="container">
+          <form>
+            <div className="form-group">
+              <input  
+                value={this.state.title}
+                onChange={this.handleInputChange}
+                name="title"
+                placeholder="Title (required)"
+              />
+            
+              <button 
+                disabled={!(this.state.title)}
+                onClick={this.handleFormSubmit} 
+                className="btn btn-success"
+              >
+                Submit Recipe
+              </button>
+            </div>
+          </form>
+        </div>
         <div className="container">
           {this.state.recipes.length ? (
             <ul>

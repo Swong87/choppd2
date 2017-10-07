@@ -20,7 +20,10 @@ class Discover extends Component {
     API.getChallenges()
       .then(res =>
         this.setState({ 
-          challenges: res.data
+          challenges: res.data,
+          title: "",
+          image: "",
+          ingredients: ""
         })
       ).catch(err => console.log(err));
   };
