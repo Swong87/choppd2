@@ -18,10 +18,12 @@ class Challenge extends Component {
 
   loadChallenge = () => {
     API.getChallenge(this.props.match.params.id)
-      .then(res =>
+      .then(res => {
+        console.log(res.data),
         this.setState({ 
           challenge: res.data
-        }))
+        })
+      })
       .catch(err => console.log(err));
   };
 
