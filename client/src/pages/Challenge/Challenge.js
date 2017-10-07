@@ -74,10 +74,17 @@ class Challenge extends Component {
           </div>
         </div>
         <div className="container">
+          <h3>Basket Ingredients</h3>
           {ingredients.length ? (
+            <ul>
               {ingredients.map((items, i) => (
-                <span key={i}> {items} </span>
+                <li key={i}>
+                  <strong>
+                    {items}
+                  </strong>
+                </li>
               ))}
+            </ul>
           ) : (
             <h3>No Results to Display</h3>
           )}
