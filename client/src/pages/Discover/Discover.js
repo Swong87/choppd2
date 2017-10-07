@@ -44,7 +44,7 @@ class Discover extends Component {
       API.saveChallenge({
         title: this.state.title,
         image: this.state.image,
-        ingredients: this.state.ingredients
+        ingredients: this.state.ingredients.split(', ')
       })
         .then(res => this.loadChallenges())
         .catch(err => console.log(err));
