@@ -24,8 +24,8 @@ class Challenge extends Component {
           recipes: res.data.recipe, 
           ingredients: res.data.ingredients,
           title: ""
-        })
-      ).catch(err => console.log(err));
+        }))
+      .catch(err => console.log(err));
   };
 
   deleteRecipe = id => {
@@ -64,7 +64,7 @@ class Challenge extends Component {
             <ul>
               {this.state.challenge.ingredients}
               {this.state.recipes.map(item => (
-                <span>| {item} |</span>
+                <li>{item}</li>
               ))}
             </ul>
           </div>
