@@ -57,7 +57,7 @@ class Discover extends Component {
   render() {
     return (
       <div>
-        <div className="container">
+        <div className="container text-center">
           <form>
             <div className="form-group">
               <input  
@@ -98,11 +98,11 @@ class Discover extends Component {
                       {challenge.title}
                     </strong>
                   </Link>
-                  <span className="btn" onClick={() => this.deleteChallenge(challenge._id)}>
+                  <span className='btn' onClick={() => this.deleteChallenge(challenge._id)}>
                   ✗
                   </span>
                   <br />
-                  <img width='200px' src={challenge.image} />
+                  <img width='200px' src={challenge.image} alt='challenge' />
                   <ul>
                     {console.log(challenge.ingredients)}
                     {challenge.ingredients.map(item => (

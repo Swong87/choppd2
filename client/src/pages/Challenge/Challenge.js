@@ -20,10 +20,10 @@ class Challenge extends Component {
   loadChallenge = () => {
     API.getChallenge(this.props.match.params.id)
       .then(res => {
-        console.log(res.data),
+        console.log(res.data)
         this.setState({ 
           challenge: res.data
-        }),
+        })
         ingredients = res.data.ingredients
       })
       .catch(err => console.log(err));
@@ -71,13 +71,13 @@ class Challenge extends Component {
             <h1>
               {this.state.challenge.title}
             </h1>
-            <img width='500px' src={this.state.challenge.image} />
+            <img width='500px' src={this.state.challenge.image} alt='challenge' />
           </div>
         </div>
         <div className="container text-center">
           <h3>Basket Ingredients</h3>
           {ingredients.length ? (
-            <ul>
+            <div>
               {ingredients.map((items, i) => (
                 <li key={i}>
                   <strong>
@@ -85,12 +85,12 @@ class Challenge extends Component {
                   </strong>
                 </li>
               ))}
-            </ul>
+            </div>
           ) : (
             <h3>No Results to Display</h3>
           )}
         </div>
-        <div className="container">
+        <div className="container text-center">
           <form>
             <div className="form-group">
               <input  

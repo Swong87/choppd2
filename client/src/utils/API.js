@@ -36,6 +36,9 @@ export default {
     return axios.post("/api/challenges", challengeData);
   },
   updateChallenge: function(id) {
-    return axios.put("/api/challenges/" + id)
-  }
+    return axios.put("/api/challenges/" + id);
+  },
+  saveUser: function(userData) {
+    return axios.post("/api/users", userData);
+  },
 };
