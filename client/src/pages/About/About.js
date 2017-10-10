@@ -35,7 +35,7 @@ class About extends Component {
         username: this.state.username,
         password: this.state.password
       }).then(res => this.load())
-      .catch(err => console.log(err));
+      .catch(err => alert('Username already exists!'));
     }
   };
 
@@ -45,6 +45,7 @@ class About extends Component {
       <div className="row">
         <div className="text-center col-sm-12">
           <form action="/login" method="post">
+          <h3>Login</h3>
 				    <div>
 				      <label>Username:</label>
 				      <input type="text" name="username"/>
@@ -63,7 +64,7 @@ class About extends Component {
     		<div className="text-center col-sm-12">
       		<form>
 					  <div className="form-group">
-					  	<h3>Sign Up</h3>
+					  	<h3>Register</h3>
 					  	<div>
 					      <label>Create Username:</label>
 					      <input  
@@ -78,6 +79,7 @@ class About extends Component {
 					      <input  
 						      value={this.state.password}
 						      onChange={this.handleInputChange}
+						      type="password"
 						      name="password"
 						      placeholder="Password (required)"
 						    />

@@ -9,7 +9,17 @@ module.exports = {
   createUser: function(req, res) {
     db.User.create(req.body)
       .then(dbModel => res.json(dbModel))
-      .catch(err => console.log(err));
+      .catch(err => { 
+        if (err) {
+          if (err.name === 'MongoError') {
+            // Duplicate username
+            return res.status(500).send('User already exist!');
+          }
+
+          // Some other error
+          return res.status(500).send(err);
+        }
+      });
   },
 
   findAll: function(req, res) {

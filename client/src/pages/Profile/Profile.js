@@ -11,13 +11,6 @@ class Profile extends Component {
     error: ""
   };
 
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
-  // componentDidMount() {
-  //   API.getBaseBreedsList()
-  //     .then(res => this.setState({ breeds: res.data.message }))
-  //     .catch(err => console.log(err));
-  // }
-
   handleInputChange = event => {
     this.setState({ search: event.target.value });
   };

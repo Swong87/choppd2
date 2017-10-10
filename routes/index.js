@@ -20,12 +20,16 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
     db.User.findOne({ username: username }, function(err, user) {
       if (err) { return done(err); }
+      
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
+
+      if (!user.comparePassword(password, function(err, isMatch) {
+        if (err) throw err;
+        console.log(password + ': ', isMatch);
+      })) 
+
       return done(null, user);
     });
   }
