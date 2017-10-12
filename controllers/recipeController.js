@@ -38,7 +38,14 @@ module.exports = {
             { $push: { "recipe": doc._id } }, 
             { new: true })
           .then(dbModel => res.json(dbModel))
-          .catch(err => console.log(err));
+          .catch(err => console.log(err)); //,
+        // db.User
+        //   .findOneAndUpdate(
+        //     { _id: userID }, 
+        //     { $push: { "recipe": doc._id } }, 
+        //     { new: true })
+        //   .then(dbModel => res.json(dbModel))
+        //   .catch(err => console.log(err));
       };
     });
   },

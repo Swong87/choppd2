@@ -4,13 +4,14 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
-    "express": "^4.15.4",
     "cors-prefetch-middleware": "^1.0.0",
+    "express": "^4.15.4",
     "images-upload-middleware": "^1.1.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-images-uploader": "^1.1.0",
     "react-modal": "^2.3.2",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.0.14"
   },

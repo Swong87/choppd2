@@ -11,10 +11,15 @@ const db = require("../models");
 router.use("/api", apiRoutes);
 
 router.route("/login")
-  .post(passport.authenticate('local', { 
-  	successRedirect: '/profile',
-    failureRedirect: '/'})
-);
+  .post(passport.authenticate('local'), function(req, res) {
+      res.redirect('/profile/' + req.user.id);
+  });
+
+router.route('/logout')
+.get(function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -24,13 +29,15 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-
-      if (!user.comparePassword(password, function(err, isMatch) {
-        if (err) throw err;
-        console.log(password + ': ', isMatch);
-      })) 
-
-      return done(null, user);
+      // Compares password with users password
+      user.comparePassword(password, function(err, isMatch) {
+        // if its not a match, it will send error
+        if(!isMatch) {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+        // or else it will return user
+        return done(null, user);;
+      })
     });
   }
 ));
@@ -49,5 +56,7 @@ passport.deserializeUser(function(id, done) {
 router.use(function(req, res) {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
+
+
 
 module.exports = router;

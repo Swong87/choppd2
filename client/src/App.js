@@ -6,17 +6,22 @@ import Profile from "./pages/Profile";
 import Challenge from "./pages/Challenge";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+// import All from "./components/All";
+// import EnsureLoggedInContainer from "./components/EnsureLoggedInContainer";
+          // <Route component={EnsureLoggedInContainer}>
+                  // <Route path="/" component={All}>
 const App = () =>
   <Router>
     <div>
-    <Navbar />
+      <Navbar />
       <Switch>
-        <Route exact path="/" component={About} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/challenges" component={Discover} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/challenge/:id" component={Challenge} />
+
+          <Route exact path="/" component={About} />
+          <Route exact path="/challenges" component={Discover} />
+
+            <Route exact path="/profile/:id" component={Profile} />
+            <Route exact path="/challenge/:id" component={Challenge} />
+
       </Switch>
       <Footer />
     </div>

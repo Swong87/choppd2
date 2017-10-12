@@ -2,13 +2,29 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import ModalButton from "../../components/ModalButton/ModalButton.js";
 import PicUploader from "../../components/PicUploader";
+import RecipeModal from "../../components/ModalButton/RecipeModal.js";
+
+let recipes = [];
 
 class Profile extends Component {
   state = {
-    search: "",
-    breeds: [],
-    results: [],
-    error: ""
+    user: []
+  };
+
+  componentDidMount() {
+    this.loadProfile();
+  };
+
+  loadProfile = () => {
+    API.getUser(this.props.match.params.id)
+      .then(res => {
+        console.log(res.data)
+        this.setState({ 
+          user: res.data
+        })
+        recipes = res.data.recipes
+      })
+      .catch(err => console.log(err));
   };
 
   handleInputChange = event => {
@@ -26,6 +42,7 @@ class Profile extends Component {
       })
       .catch(err => this.setState({ error: err.message }));
   };
+
   render() {
     return (
       <div>
@@ -48,7 +65,23 @@ class Profile extends Component {
         </div>
 
         <div className="container">
-          
+          {recipes.length ? (
+            <ul>
+              {recipes.map(recipe => (
+                <li key={recipe._id}>
+                  <strong>
+                    {recipe.title}
+                  </strong>
+                  <RecipeModal />
+                  <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
+                    ✗
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <h3>No Results to Display</h3>
+          )}
         </div>
       </div>
     );
