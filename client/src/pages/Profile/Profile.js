@@ -36,22 +36,28 @@ class Profile extends Component {
       <div>
         <div className="container">
           <div className="row">
-            <div className="text-center col-sm-3">
-              <PicUploader />
-            </div>
-            <div className="text-center col-sm-9">
+            <div className="col-sm-1"></div>
+            <div className="col-sm-10">
+              <div className="row text-center">
+                <div className="col-sm-6">
+                  <PicUploader />
+                </div>
+                <div className="col-sm-6">
 
-                <h1 className="display">{this.state.user.username}</h1>
-                <ModalButton />
-                
-                <span><a href="/search">Posts</a> | <a href="/search">Followers</a> | <a href="/search">Following</a></span>
-                <p>Bio goes here</p>
+                    <h1 className="display">{this.state.user.username}</h1>
+                    <ModalButton />
+                    
+                    <span><a href="/search">Posts</a> | <a href="/search">Followers</a> | <a href="/search">Following</a></span>
+                    <p>Bio goes here</p>
 
+                </div>
+              </div>
             </div>
+            <div className="col-sm-1"></div>
           </div>
         </div>
 
-        <div className="container">
+        <div className="container text-center">
           {recipes.length ? (
             <ul>
               {recipes.map(recipe => (

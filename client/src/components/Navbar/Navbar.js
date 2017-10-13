@@ -1,10 +1,36 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./Navbar.css";
 
+const auth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100) // fake async
+  },
+  signout(cb) {
+    this.isAuthenticated = false
+    setTimeout(cb, 100)
+  }
+}
+
+const AuthButton = withRouter(({ history }) => (
+  auth.isAuthenticated ? (
+    <div>
+      <form action="/logout" method="GET">
+        <button className="btn btn-primary" type="submit" onClick={() => {
+          auth.signout(() => history.push('/'))
+        }}>Sign out</button>
+      </form>
+    </div>
+  ) : (
+    <div></div>
+  )
+));
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 class Navbar extends Component {
 
+ 
   render() {
     return (
       <div>
@@ -30,16 +56,12 @@ class Navbar extends Component {
                 <Link className="nav-link js-scroll-trigger" to="/challenges">Discover</Link>
               </li>
 
-              <li className="nav-item"{...window.location.pathname === "/profile" ? "active" : ""}>
-                <Link className="nav-link js-scroll-trigger" to="/profile">Profile</Link>
+              <li className="nav-item"{...window.location.pathname === "/login" ? "active" : ""}>
+                <Link className="nav-link js-scroll-trigger" to="/login">Profile</Link>
               </li>
 
-               <li>
-                <form action="/logout" method="GET">
-                  <div>
-                    <button className="btn btn-primary" type="submit">Log Out</button>
-                  </div>
-                </form>
+              <li>
+                {AuthButton} 
               </li>
 
             </ul>

@@ -95,3 +95,26 @@ html {
 .content-section {
   padding-top: 80px;
   padding-bottom: 80px; }
+
+.block {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+  background: rgba(000, 000, 000, 0.1);
+}
+
+.crop {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 700px;
+    margin: -75px 0 0 -100px;
+}
+
+.navbar {
+  background-color: black;
+}

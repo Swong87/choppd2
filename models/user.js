@@ -12,7 +12,10 @@ const userSchema = new Schema({
   	type: String,
   	unique: true
   },
-  recipes: Array,
+  recipes: [{
+    type: Schema.Types.ObjectId,
+    ref: "Recipe"
+  }],
   date: { type: Date, default: Date.now }
 });
 userSchema.methods.validPassword = function( pwd ) {

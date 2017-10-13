@@ -90,10 +90,10 @@ class Discover extends Component {
         </div>
         <div className="container">
           {this.state.challenges.length ? (
-            <ul>
+            <div>
               {this.state.challenges.map(challenge => (
-                <li key={challenge._id}>
-                  <Link to={"/challenge/" + challenge._id}>
+                <div className="block" key={challenge._id}>
+                  <Link className="text-center" to={"/challenge/" + challenge._id}>
                     <strong>
                       {challenge.title}
                     </strong>
@@ -102,16 +102,18 @@ class Discover extends Component {
                   ✗
                   </span>
                   <br />
-                  <img width='200px' src={challenge.image} alt='challenge' />
+                  <div className="crop">
+                    <img src={challenge.image} alt='challenge' />
+                  </div>
                   <ul>
                     {console.log(challenge.ingredients)}
                     {challenge.ingredients.map(item => (
                       <li>{item}</li>
                     ))}
                   </ul>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           ) : (
             <h3>No Results to Display</h3>
           )}
