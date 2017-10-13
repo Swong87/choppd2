@@ -39,7 +39,7 @@ export default {
     return axios.put("/api/challenges/" + id);
   },
   getUser: function(id) {
-    return axios.get("/api/users" + id);
+    return axios.get("/api/users/" + id);
   },
   saveUser: function(userData) {
     return axios.post("/api/users", userData);
