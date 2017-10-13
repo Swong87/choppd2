@@ -41,60 +41,71 @@ class About extends Component {
 	render() {
 	return (
 	<div>
-	  <div className="row">
-		<div className="text-center col-sm-12">
-		  <form action="/login" method="post">
-			  <h3>Login</h3>
-				<div>
-				  <label>Username:</label>
-				  <input type="text" name="username"/>
-				</div>
-				<div>
-				  <label>Password:</label>
-				  <input type="password" name="password"/>
-				</div>
-				<div>
-				  <input type="submit" value="Log In"/>
-				</div>
-			</form>
-		</div>
-	  </div>
-		<div className="row">
-			<div className="text-center col-sm-12">
-			<form>
-					  <div className="form-group">
-						<h3>Register</h3>
+		<div className="container">
+		  <div className="row">
+		  	<div className="text-center col-sm-6" id="splash">
+		  	</div>
+				<div className="text-center col-sm-6">
+				  <form action="/login" method="post">
+					  <h3>Login</h3>
 						<div>
-						  <label>Create Username:</label>
-						  <input  
-							  value={this.state.username}
-							  onChange={this.handleInputChange}
-							  name="username"
-							  placeholder="Username (required)"
-							/>
+						  <input type="text" name="username" placeholder="Username" />
 						</div>
+						<br />
 						<div>
-						  <label>Create Password:</label>
-						  <input  
-							  value={this.state.password}
-							  onChange={this.handleInputChange}
-							  type="password"
-							  name="password"
-							  placeholder="Password (required)"
-							/>
+						  <input type="password" name="password" placeholder="Password" />
 						</div>
+						<br />
 						<div>
-						  <button 
-							  onClick={this.handleFormSubmit} 
-							  className="btn btn-success"
-							>
-							  Create Account
-							</button>
+						  <input className="btn btn-primary" type="submit" value="Log In" />
 						</div>
-					  </div>
 					</form>
+					<br />
+					<div className="row">
+						<div className="col-sm-5">-----</div>
+						<div className="col-sm-2">OR</div>
+						<div className="col-sm-5">-----</div>
+					</div>
+					<br />
+					<div className="row">
+						<div className="text-center col-sm-12">
+							<form>
+							  <div className="form-group">
+									<h3>Register</h3>
+									<div>
+									  <input  
+										  value={this.state.username}
+										  onChange={this.handleInputChange}
+										  name="username"
+										  placeholder="Username"
+										/>
+									</div>
+									<br />
+									<div>
+									  <input  
+										  value={this.state.password}
+										  onChange={this.handleInputChange}
+										  type="password"
+										  name="password"
+										  placeholder="Password"
+										/>
+									</div>
+									<br />
+									<div>
+									  <button 
+										  onClick={this.handleFormSubmit} 
+										  className="btn btn-success"
+										>
+										  Create Account
+										</button>
+									</div>
+							  </div>
+							</form>
+						</div>
+					</div>
 				</div>
-			</div>
+		  </div>
+		</div>
 	</div>
 	);
   }

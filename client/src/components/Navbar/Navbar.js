@@ -8,7 +8,7 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
           <div className="container">
             <div className="navbar-header">
               <Link className="navbar-brand" to="/challenges">
@@ -47,10 +47,21 @@ class Navbar extends Component {
           </div>
         </nav>
 
-            
-        <div className="text-center jumbotron">
-          <h1>CHOPPD</h1>
-        </div>
+        <header className="masthead">
+          <div className="intro-body">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-8 mx-auto">
+                  
+                  <h1 className="brand-heading">CHOPPD</h1>
+                  <p className="intro-text">Recipe Sharing
+                    <br />Welcome.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <br />
         
       </div>
     );
