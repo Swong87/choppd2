@@ -41,7 +41,7 @@ class Profile extends Component {
             </div>
             <div className="text-center col-sm-9">
 
-                <h1 className="display">SWong87</h1>
+                <h1 className="display">{this.state.user.username}</h1>
                 <ModalButton />
                 
                 <span><a href="/search">Posts</a> | <a href="/search">Followers</a> | <a href="/search">Following</a></span>
