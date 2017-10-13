@@ -31,18 +31,6 @@ class Profile extends Component {
     this.setState({ search: event.target.value });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    API.getDogsOfBreed(this.state.search)
-      .then(res => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        this.setState({ results: res.data.message, error: "" });
-      })
-      .catch(err => this.setState({ error: err.message }));
-  };
-
   render() {
     return (
       <div>
@@ -50,7 +38,6 @@ class Profile extends Component {
           <div className="row">
             <div className="text-center col-sm-3">
               <PicUploader />
-              <img src="/profilePic.JPG" width="200px" alt="pic" />
             </div>
             <div className="text-center col-sm-9">
 
