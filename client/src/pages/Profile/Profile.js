@@ -34,7 +34,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <div className="container">
+        <div className="topPad bottomPad container">
           <div className="row">
             <div className="col-sm-1"></div>
             <div className="col-sm-10">

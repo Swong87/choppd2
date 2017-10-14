@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import Challenge from "./pages/Challenge";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 // import All from "./components/All";
 // import EnsureLoggedInContainer from "./components/EnsureLoggedInContainer";
           // <Route component={EnsureLoggedInContainer}>
@@ -15,14 +16,11 @@ const App = () =>
     <div>
       <Navbar />
       <Switch>
-
-          <Route exact path="/" component={About} />
-          <Route exact path="/challenges" component={Discover} />
-
-            <PrivateRoute exact path="/profile/:id" component={Profile} />
-            <PrivateRoute exact path="/challenge/:id" component={Challenge} />
-            <Route exact path="/login" component={Login} />
-
+        <Route exact path="/" component={About} />
+        <Route exact path="/challenges" component={Discover} />
+        <PrivateRoute exact path="/profile/:id" component={Profile} />
+        <PrivateRoute exact path="/challenge/:id" component={Challenge} />
+        <Route exact path="/login" component={Login} />
       </Switch>
       <Footer />
     </div>
@@ -76,7 +74,7 @@ const App = () =>
       }
       
       return (
-        <div>
+        <div className="topPad">
           <p>You must log in to view the page at {from.pathname}</p>
           <button onClick={this.login}>Log in</button>
         </div>

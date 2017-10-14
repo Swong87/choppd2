@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import Header from "../../components/Header";
 
 
 class About extends Component {
@@ -41,6 +42,7 @@ class About extends Component {
 	render() {
 	return (
 	<div>
+		<Header />
 		<div className="container">
 		  <div className="row">
 		  	<div className="text-center col-sm-6" id="splash">
@@ -62,9 +64,9 @@ class About extends Component {
 					</form>
 					<br />
 					<div className="row">
-						<div className="col-sm-5">-----</div>
+						<div className="col-sm-5"></div>
 						<div className="col-sm-2">OR</div>
-						<div className="col-sm-5">-----</div>
+						<div className="col-sm-5"></div>
 					</div>
 					<br />
 					<div className="row">

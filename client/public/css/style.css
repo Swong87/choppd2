@@ -23,7 +23,7 @@ html {
   text-align: center;
   color: white;
   background: url("../img/skyline1.jpg") no-repeat bottom center scroll;
-  background-color: #111;
+  background-color: black;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -80,7 +80,7 @@ html {
       transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s;
       letter-spacing: 1px;
       border-bottom: none;
-      background: transparent; }
+      background: black; }
       #mainNav.navbar-shrink {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -98,23 +98,36 @@ html {
 
 .block {
   display: inline-block;
-  padding: 10px;
+  border-radius: 5px;
   margin: 10px;
-  background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
-  background: rgba(000, 000, 000, 0.1);
+  background: rgb(000, 000, 000); /* Fallback for older browsers without RGBA-support */
+/*  background: rgba(000, 000, 000, 0.5);*/
+}
+
+.imgBlock {
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .crop {
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
-.crop img {
-    width: 700px;
-    margin: -75px 0 0 -100px;
+.infoText {
+  color: white;
 }
 
-.navbar {
-  background-color: black;
+.float {
+  float: right;
+}
+
+.topPad {
+  padding-top: 200px;
+}
+
+.bottomPad {
+  padding-bottom: 50px;
 }

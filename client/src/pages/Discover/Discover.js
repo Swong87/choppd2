@@ -57,7 +57,7 @@ class Discover extends Component {
   render() {
     return (
       <div>
-        <div className="container text-center">
+        <div className="topPad container text-center">
           <form>
             <div className="form-group">
               <input  
@@ -90,27 +90,21 @@ class Discover extends Component {
         </div>
         <div className="container">
           {this.state.challenges.length ? (
-            <div>
+            <div className="text-center">
               {this.state.challenges.map(challenge => (
                 <div className="block" key={challenge._id}>
-                  <Link className="text-center" to={"/challenge/" + challenge._id}>
-                    <strong>
-                      {challenge.title}
-                    </strong>
-                  </Link>
-                  <span className='btn' onClick={() => this.deleteChallenge(challenge._id)}>
-                  ✗
-                  </span>
-                  <br />
                   <div className="crop">
-                    <img src={challenge.image} alt='challenge' />
+                    <Link to={"/challenge/" + challenge._id}>
+                      <img className="imgBlock" src={challenge.image} alt='challenge' />
+                      
+                    </Link>
                   </div>
-                  <ul>
-                    {console.log(challenge.ingredients)}
+                  <div className="infoText">
+                    <h4>{challenge.title}</h4>
                     {challenge.ingredients.map(item => (
-                      <li>{item}</li>
+                      <div>{item}</div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               ))}
             </div>

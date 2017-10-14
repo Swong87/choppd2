@@ -49,42 +49,25 @@ class Navbar extends Component {
               
               <ul className="navbar-nav ml-auto">
 
-              <li className="nav-item"{...window.location.pathname === "/" ? "active" : ""}>
-              </li>
+                <li className="nav-item"{...window.location.pathname === "/" ? "active" : ""}>
+                </li>
 
-              <li className="nav-item"{...window.location.pathname === "/challenges" ? "active" : ""}>
-                <Link className="nav-link js-scroll-trigger" to="/challenges">Discover</Link>
-              </li>
+                <li className="nav-item"{...window.location.pathname === "/challenges" ? "active" : ""}>
+                  <Link className="nav-link js-scroll-trigger" to="/challenges">Discover</Link>
+                </li>
 
-              <li className="nav-item"{...window.location.pathname === "/login" ? "active" : ""}>
-                <Link className="nav-link js-scroll-trigger" to="/login">Profile</Link>
-              </li>
+                <li className="nav-item"{...window.location.pathname === "/login" ? "active" : ""}>
+                  <Link className="nav-link js-scroll-trigger" to="/login">Profile</Link>
+                </li>
 
-              <li>
-                {AuthButton} 
-              </li>
+                <li>
+                  {AuthButton} 
+                </li>
 
-            </ul>
+              </ul>
             </div>
           </div>
         </nav>
-
-        <header className="masthead">
-          <div className="intro-body">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-8 mx-auto">
-                  
-                  <h1 className="brand-heading">CHOPPD</h1>
-                  <p className="intro-text">Recipe Sharing
-                    <br />Welcome.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-        <br />
-        
       </div>
     );
   }
