@@ -66,7 +66,7 @@ class Challenge extends Component {
   render() {
     return (
       <div>
-        <div className="container">
+        <div className="topPad container">
           <div className="jumbotron text-center">
             <h1>
               {this.state.challenge.title}
@@ -90,7 +90,7 @@ class Challenge extends Component {
             <h3>No Results to Display</h3>
           )}
         </div>
-        <div className="container text-center">
+        <div className="bottomPad container text-center">
           <form>
             <div className="form-group">
               <input  
