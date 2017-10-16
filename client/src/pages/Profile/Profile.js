@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import ModalButton from "../../components/ModalButton/ModalButton.js";
-import PicUploader from "../../components/PicUploader";
 import RecipeModal from "../../components/ModalButton/RecipeModal.js";
+import Navbar from "../../components/Navbar";
 
 let recipes = [];
 
 class Profile extends Component {
   state = {
-    user: []
+    user: [],
+    currentUser: ""
   };
 
   componentDidMount() {
@@ -18,11 +19,16 @@ class Profile extends Component {
   loadProfile = () => {
     API.getUser(this.props.match.params.id)
       .then(res => {
-        console.log(res.data)
-        this.setState({ 
-          user: res.data
-        })
-        recipes = res.data.recipes
+        if (res.data.statusCode == 401) {
+          this.props.history.push("/login");
+        } else {
+          console.log("data:", res.data);
+          console.log("user:", res.data.sess);
+          this.setState({ 
+            currentUser: res.data.sess.passport.user,
+            user: res.data.results
+           })
+        }
       })
       .catch(err => console.log(err));
   };
@@ -34,13 +40,13 @@ class Profile extends Component {
   render() {
     return (
       <div>
+        <Navbar userInfo={this.state.currentUser} />
         <div className="topPad bottomPad container">
           <div className="row">
             <div className="col-sm-1"></div>
             <div className="col-sm-10">
               <div className="row text-center">
                 <div className="col-sm-6">
-                  <PicUploader />
                 </div>
                 <div className="col-sm-6">
 

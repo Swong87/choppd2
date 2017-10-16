@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 
 
 class Discover extends Component {
@@ -9,7 +10,8 @@ class Discover extends Component {
     challenges: [],
     title: "",
     image: "",
-    ingredients: []
+    ingredients: [],
+    currentUser: ""
   };
 
   componentDidMount() {
@@ -18,14 +20,21 @@ class Discover extends Component {
 
   loadChallenges = () => {
     API.getChallenges()
-      .then(res =>
-        this.setState({ 
-          challenges: res.data,
-          title: "",
-          image: "",
-          ingredients: ""
-        })
-      ).catch(err => console.log(err));
+      .then(res => {
+        if(res.data.statusCode == 401){
+          this.props.history.push("/login");
+        }
+        else {
+          console.log("user:", res.data);
+          this.setState({
+            currentUser: res.data.sess.passport.user,
+            challenges: res.data.results,
+            title: "",
+            image: "",
+            ingredients: ""
+           })
+        }
+      }).catch(err => console.log(err));
   };
 
   deleteChallenge = id => {
@@ -57,6 +66,7 @@ class Discover extends Component {
   render() {
     return (
       <div>
+        <Navbar userInfo={this.state.currentUser} />
         <div className="topPad container text-center">
           <form>
             <div className="form-group">
@@ -101,8 +111,8 @@ class Discover extends Component {
                   </div>
                   <div className="infoText">
                     <h4>{challenge.title}</h4>
-                    {challenge.ingredients.map(item => (
-                      <div>{item}</div>
+                    {challenge.ingredients.map((item, index) => (
+                      <div key={index}>{item}</div>
                     ))}
                   </div>
                 </div>

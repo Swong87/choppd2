@@ -10,51 +10,60 @@ const db = require("../models");
 module.exports = {
   // Get all Challenges: app.get("/discover", 
   findAll: function(req, res) {
-    db.Recipe.find({})
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => console.log(err));
+    if (req.user) {
+      db.Recipe.find({})
+        .sort({ date: -1 })
+        .then(dbModel => res.json({results: dbModel, sess: req.session}))
+        .catch(err => console.log(err));
+    } else {
+      res.json({ error: "Please login", statusCode: 401 })
+    }
   },
 
   // Get selected Challenge: app.get("/challenge/:id", 
   findOne: function(req, res) {
-    const id = req.params.id;
-    db.Recipe.findOne({ _id: id })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => console.log(err));
+    if (req.user) {
+      const id = req.params.id;
+      db.Recipe.findOne({ _id: id })
+        .then(dbModel => res.json({results: dbModel, sess: req.session}))
+        .catch(err => console.log(err));
+    } else {
+      res.json({ error: "Please login", statusCode: 401 })
+    }
   },
 
   // Create new recipe: app.post("/challenge/:id", 
   createRecipe: function(req, res) {
-    const selected = req.params.id;
-    const newRecipe = new db.Recipe(req.body);
-    newRecipe.save(function(error, doc) {
-      if(error){
-        res.send(error);
-      } else {
-        db.Challenge
-          .findOneAndUpdate(
-            { _id: selected }, 
-            { $push: { "recipe": doc._id } }, 
-            { new: true })
-          .then(dbModel => res.json(dbModel))
-          .catch(err => console.log(err)); //,
-        // db.User
-        //   .findOneAndUpdate(
-        //     { _id: userID }, 
-        //     { $push: { "recipe": doc._id } }, 
-        //     { new: true })
-        //   .then(dbModel => res.json(dbModel))
-        //   .catch(err => console.log(err));
-      };
-    });
+    if (req.user) {
+      const selected = req.params.id;
+      const newRecipe = new db.Recipe(req.body);
+      newRecipe.save(function(error, doc) {
+        if(error){
+          res.send(error);
+        } else {
+          db.Challenge
+            .findOneAndUpdate(
+              { _id: selected }, 
+              { $push: { "recipe": doc._id } }, 
+              { new: true })
+            .then(dbModel => res.json({results: dbModel, sess: req.session}))
+            .catch(err => console.log(err)); //,
+        };
+      });
+    } else {
+      res.json({ error: "Please login", statusCode: 401 })
+    }
   },
 
   // Remove recipe: app.delete("recipe/:id", 
   removeRecipe: function(req, res) {
-    const selected = req.params.id;
-    db.Recipe.remove({ _id: selected})
-      .then(dbModel => res.json(dbModel))
-      .catch(err => console.log(err));
+    if (req.user) {
+      const selected = req.params.id;
+      db.Recipe.remove({ _id: selected})
+        .then(dbModel => res.json(dbModel))
+        .catch(err => console.log(err));
+    } else {
+      res.json({ error: "Please login", statusCode: 401 })
+    }
   } 
 };

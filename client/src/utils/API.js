@@ -41,7 +41,13 @@ export default {
   getUser: function(id) {
     return axios.get("/api/users/" + id);
   },
-  saveUser: function(userData) {
-    return axios.post("/api/users", userData);
+  login: function(userData) {
+    return axios.post("/api/auth/login", userData);
+  },
+  logout: function() {
+    return axios.get("/api/auth/logout");
+  },
+  register: function(userData) {
+    return axios.post("/api/auth/register", userData);
   },
 };

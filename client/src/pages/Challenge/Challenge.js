@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import RecipeModal from "../../components/ModalButton/RecipeModal.js";
+import Navbar from "../../components/Navbar";
 
 let ingredients = [];
 
@@ -9,7 +10,8 @@ class Challenge extends Component {
   state = {
     challenge: [],
     recipes: [],
-    title: ""
+    title: "",
+    currentUser: ""
   };
 
   componentDidMount() {
@@ -20,22 +22,32 @@ class Challenge extends Component {
   loadChallenge = () => {
     API.getChallenge(this.props.match.params.id)
       .then(res => {
-        console.log(res.data)
+        if(res.data.statusCode == 401){
+          this.props.history.push("/login");
+        }
+        else {
+          console.log("user:", res.data.sess);
+          this.setState({currentUser: res.data.sess.passport.user })
+        }
         this.setState({ 
-          challenge: res.data
+          challenge: res.data.results
         })
-        ingredients = res.data.ingredients
+        ingredients = res.data.results.ingredients
       })
       .catch(err => console.log(err));
   };
 
   loadRecipes = () => {
     API.getChallenge(this.props.match.params.id)
-      .then(res =>
-        this.setState({ 
-          recipes: res.data.recipe,
-          title: ""
-        }))
+      .then(res => {
+        if (res.data.statusCode == 401) {
+          this.props.history.push("/login");
+        } else {
+          this.setState({ 
+            recipes: res.data.results.recipe,
+            title: ""
+          })
+        }})
       .catch(err => console.log(err));
   };
 
@@ -66,6 +78,7 @@ class Challenge extends Component {
   render() {
     return (
       <div>
+        <Navbar userInfo={this.state.currentUser} />
         <div className="topPad container">
           <div className="jumbotron text-center">
             <h1>
