@@ -4,11 +4,12 @@ import ModalButton from "../../components/ModalButton/ModalButton.js";
 import RecipeModal from "../../components/ModalButton/RecipeModal.js";
 import Navbar from "../../components/Navbar";
 
-let recipes = [];
+let ingredients = [];
 
 class Profile extends Component {
   state = {
     user: [],
+    recipes: [],
     currentUser: ""
   };
 
@@ -22,14 +23,28 @@ class Profile extends Component {
         if (res.data.statusCode == 401) {
           this.props.history.push("/login");
         } else {
-          console.log("data:", res.data);
-          console.log("user:", res.data.sess);
           this.setState({ 
             currentUser: res.data.sess.passport.user,
             user: res.data.results
-           })
+          })
+          this.loadRecipes();
         }
       })
+      .catch(err => console.log(err));
+  };
+
+  loadRecipes = () => {
+    API.getUserRecipes(this.props.match.params.id)
+      .then(res => {
+        if (res.data.statusCode == 401) {
+          this.props.history.push("/login");
+        } else {
+          this.setState({ 
+            recipes: res.data.results
+          })
+          console.log("Results:" + res.data.results);
+          ingredients = res.data.results.ingredients
+        }})
       .catch(err => console.log(err));
   };
 
@@ -49,10 +64,19 @@ class Profile extends Component {
                 <div className="col-sm-6">
                 </div>
                 <div className="col-sm-6">
-
-                    <h1 className="display">{this.state.user.username}</h1>
-                    <ModalButton />
-                    
+                  {this.state.currentUser === this.props.match.params.id ? (
+                    <div>
+                      <h1 className="display">{this.state.currentUser}</h1>
+                      <ModalButton />
+                    </div>
+                  ) : (
+                    <div>
+                      <h1 className="display">{this.props.match.params.id}</h1>
+                      <div>
+                        <button className="btn btn-primary">Follow</button>
+                      </div>
+                    </div>
+                  )}
                     <span><a href="/search">Posts</a> | <a href="/search">Followers</a> | <a href="/search">Following</a></span>
                     <p>Bio goes here</p>
 
@@ -64,18 +88,22 @@ class Profile extends Component {
         </div>
 
         <div className="container text-center">
-          {recipes.length ? (
+          {this.state.recipes.length ? (
             <ul>
-              {recipes.map(recipe => (
-                <li key={recipe._id}>
-                  <strong>
-                    {recipe.title}
-                  </strong>
-                  <RecipeModal />
-                  <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
+              {this.state.recipes.map(recipe => (
+
+                <div className="block" key={recipe._id}>
+                  <div className="crop">
+                    <RecipeModal key={recipe._id} />
+                      <img className="imgBlock" src={recipe.image} alt='recipe' />
+                  </div>
+                  <div className="infoText">
+                    <h4>{recipe.title}</h4>
+                    <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
                     ✗
-                  </span>
-                </li>
+                    </span>
+                  </div>
+                </div>
               ))}
             </ul>
           ) : (

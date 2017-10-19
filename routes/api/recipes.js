@@ -13,6 +13,10 @@ router
   .post(recipeController.createRecipe)
   .delete(recipeController.removeRecipe);
 
+router
+  .route("/:user")
+  .get(recipeController.findRecipes);
+
 module.exports = router;
 
 //> API call > * >Recipe Controller

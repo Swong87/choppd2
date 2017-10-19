@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Header from "../../components/Header";
-
+import Alert from "../../components/Alert";
 
 class About extends Component {
 
@@ -9,91 +9,91 @@ class About extends Component {
 		username: "",
 		password: "",
 		currentUser: ""
-  };
+	};
 
-  componentWillMount() {
-    API.logout()
-      .catch(err => console.log(err))
-  }
+	componentWillMount() {
+		API.logout()
+			.catch(err => console.log(err))
+	}
 
 	handleInputChange = event => {
 		const { name, value } = event.target;
 		this.setState({
-		  [name]: value
+			[name]: value
 		});
-  };
+	};
 
-  handleLogin = event => {
-    event.preventDefault();
-    if (this.state.username && this.state.password) {
-      API.login({
-        username: this.state.username,
-        password: this.state.password
-      })
-        .then(res => {
-          if (res.data.user) {
-            this.props.history.push('/challenges');
-          }
-          else {
-            console.log("no user");
-          }
-        })
-        .catch(err => console.log(err));
-    }
-  };
+	handleLogin = event => {
+		event.preventDefault();
+		if (this.state.username && this.state.password) {
+			API.login({
+				username: this.state.username,
+				password: this.state.password
+			})
+				.then(res => {
+					if (res.data.user) {
+						this.props.history.push('/challenges');
+					}
+					else {
+						console.log("no user");
+					}
+				})
+				.catch(err => console.log("OHDAMN! " + err));
+		}
+	};
 
-  handleRegister = event => {
-    event.preventDefault();
-    if (this.state.username && this.state.password) {
-      API.register({
-        username: this.state.username,
-        password: this.state.password
-      })
-        .then(res => {
-          if(res.data.user){
-            this.props.history.push('/challenges');
-          }
-          else {
-            console.log("no user");
-          }
-        })
-        .catch(err => console.log(err));
-    }
-  };
+	handleRegister = event => {
+		event.preventDefault();
+		if (this.state.username && this.state.password) {
+			API.register({
+				username: this.state.username,
+				password: this.state.password
+			})
+				.then(res => {
+					if(res.data.user){
+						this.props.history.push('/challenges');
+					}
+					else {
+						return (<Alert />);
+					}
+				})
+				.catch(err => console.log("OHSHIZZ! " + err));
+		}
+	};
 
 	render() {
 		return (
 			<div>
 				<Header />
 				<div className="container">
-				  <div className="row">
-				  	<div className="text-center col-sm-6" id="splash">
-				  	</div>
+					<div className="row">
+						<div className="text-center col-sm-6" id="splash">
+						</div>
 						<div className="text-center col-sm-6">
-						  <form>
-							  <h3>Login</h3>
+							<form>
+								<h3>Login</h3>
 								<div>
-								  <input 
-									  type="text" 
-									  name="username" 
-									  placeholder="Username"
-									  onChange={this.handleInputChange}
-								   />
+									<input 
+										type="text" 
+										name="username" 
+										placeholder="Username"
+										onChange={this.handleInputChange}
+									 />
 								</div>
 								<br />
 								<div>
-								  <input 
-									  type="password" 
-									  name="password" 
-									  placeholder="Password"
-									  onChange={this.handleInputChange}
-								  />
+									<input 
+										type="password" 
+										name="password" 
+										placeholder="Password"
+										onChange={this.handleInputChange}
+									/>
 								</div>
 								<br />
 								<div>
-								  <button className="btn btn-primary" onClick={this.handleLogin}>
-									  Log In
-								  </button>
+									<button className="btn btn-primary" onClick={this.handleLogin}>
+										Log In
+									</button>
 								</div>
 							</form>
 							<br />
@@ -106,40 +106,40 @@ class About extends Component {
 							<div className="row">
 								<div className="text-center col-sm-12">
 									<form>
-									  <div className="form-group">
+										<div className="form-group">
 											<h3>Register</h3>
 											<div>
-											  <input  
-												  onChange={this.handleInputChange}
-												  name="username"
-												  placeholder="Username"
+												<input  
+													onChange={this.handleInputChange}
+													name="username"
+													placeholder="Username"
 												/>
 											</div>
 											<br />
 											<div>
-											  <input  
-												  onChange={this.handleInputChange}
-												  type="password"
-												  name="password"
-												  placeholder="Password"
+												<input  
+													onChange={this.handleInputChange}
+													type="password"
+													name="password"
+													placeholder="Password"
 												/>
 											</div>
 											<br />
 											<div>
-											  <button onClick={this.handleRegister} className="btn btn-success">
-												  Create Account
+												<button onClick={this.handleRegister} className="btn btn-success">
+													Create Account
 												</button>
 											</div>
-									  </div>
+										</div>
 									</form>
 								</div>
 							</div>
 						</div>
-				  </div>
+					</div>
 				</div>
 			</div>
 		);
-  }
+	}
 }
 
 export default About;

@@ -11,7 +11,10 @@ class Challenge extends Component {
     challenge: [],
     recipes: [],
     title: "",
-    currentUser: ""
+    currentUser: "",
+    method: "",
+    ingredients: [],
+    image: ""
   };
 
   componentDidMount() {
@@ -68,7 +71,11 @@ class Challenge extends Component {
     event.preventDefault();
     if (this.state.title) {
       API.saveRecipe({
-        title: this.state.title
+        title: this.state.title,
+        user: this.state.currentUser,
+        image: this.state.image,
+        ingredients: this.state.ingredients.split(', '),
+        method: this.state.method
       }, this.props.match.params.id)
         .then(res => this.loadRecipes())
         .catch(err => console.log(err));
@@ -106,11 +113,25 @@ class Challenge extends Component {
         <div className="bottomPad container text-center">
           <form>
             <div className="form-group">
-              <input  
-                value={this.state.title}
+              <input
                 onChange={this.handleInputChange}
                 name="title"
                 placeholder="Title (required)"
+              />
+              <input 
+                onChange={this.handleInputChange}
+                name="image"
+                placeholder="Image"
+              />
+              <input 
+                onChange={this.handleInputChange}
+                name="ingredients"
+                placeholder="Ingredients"
+              />
+              <input 
+                onChange={this.handleInputChange}
+                name="method"
+                placeholder="Method of Cooking"
               />
             
               <button 
@@ -135,6 +156,7 @@ class Challenge extends Component {
                   <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
                     ✗
                   </span>
+                  <a href={'/profile/' + recipe.user}>{recipe.user}</a>
                 </li>
               ))}
             </ul>

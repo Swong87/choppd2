@@ -8,7 +8,7 @@ mongoose.Promise = Promise;
 const db = require("../models");
 
 module.exports = {
-  // Get all Challenges: app.get("/discover", 
+  // Get all Recipes: app.get("/discover", 
   findAll: function(req, res) {
     if (req.user) {
       db.Recipe.find({})
@@ -20,7 +20,20 @@ module.exports = {
     }
   },
 
-  // Get selected Challenge: app.get("/challenge/:id", 
+  // Get all Recipes: app.get("/discover", 
+  findRecipes: function(req, res) {
+    if (req.user) {
+      const username = req.params.id;
+      db.Recipe.find({ user: username })
+        .sort({ date: -1 })
+        .then(dbModel => res.json({results: dbModel, sess: req.session}))
+        .catch(err => console.log(err));
+    } else {
+      res.json({ error: "Please login", statusCode: 401 })
+    }
+  },
+
+  // Get selected Recipe: app.get("/recipe/:id", 
   findOne: function(req, res) {
     if (req.user) {
       const id = req.params.id;
@@ -32,10 +45,11 @@ module.exports = {
     }
   },
 
-  // Create new recipe: app.post("/challenge/:id", 
+  // Create new recipe: app.post("/recipe/:id", 
   createRecipe: function(req, res) {
     if (req.user) {
       const selected = req.params.id;
+      const chosen = req.body.user;
       const newRecipe = new db.Recipe(req.body);
       newRecipe.save(function(error, doc) {
         if(error){
@@ -47,7 +61,14 @@ module.exports = {
               { $push: { "recipe": doc._id } }, 
               { new: true })
             .then(dbModel => res.json({results: dbModel, sess: req.session}))
-            .catch(err => console.log(err)); //,
+            .catch(err => console.log(err)),
+          db.User
+          .findOneAndUpdate(
+            { username: chosen }, 
+            { $push: { "recipe": doc._id } }, 
+            { new: true })
+          .then(dbModel => res.json({results: dbModel, sess: req.session}))
+          .catch(err => console.log(err));
         };
       });
     } else {

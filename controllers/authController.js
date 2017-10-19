@@ -6,7 +6,7 @@ module.exports = {
   doRegister: function (req, res) {
     User.register(new User({ username: req.body.username }), req.body.password, function (err, user) {
       if (err) {
-        return res.status(500).json({ error: err });
+        return res.status(500).json({ error: "OHDAMN" + err });
       }
       passport.authenticate('local')(req, res, function () {
         return res.status(200).json({ result: 'success', user: user });

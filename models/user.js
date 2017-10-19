@@ -4,11 +4,12 @@ const passLocalMon = require("passport-local-mongoose");
 
 const userSchema = new Schema({
   username: { type: String },
-  password: {type: String },
+  password: { type: String },
+  bio: { type: String },
   recipes: [{
-    type: Schema.Types.ObjectId,
-    ref: "Recipe"
-  }],
+	    type: Schema.Types.ObjectId,
+	    ref: "Recipe"
+  	}],
   date: { type: Date, default: Date.now }
 });
 
