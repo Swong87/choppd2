@@ -5,6 +5,10 @@ import Navbar from "../../components/Navbar";
 
 let ingredients = [];
 
+// <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
+// ✗
+// </span>
+
 class Challenge extends Component {
 
   state = {
@@ -87,11 +91,13 @@ class Challenge extends Component {
       <div>
         <Navbar userInfo={this.state.currentUser} />
         <div className="topPad container">
-          <div className="jumbotron text-center">
+          <div className="text-center">
             <h1>
               {this.state.challenge.title}
             </h1>
-            <img width='500px' src={this.state.challenge.image} alt='challenge' />
+
+              <img className="challengeImgBlock" src={this.state.challenge.image} alt='challenge' />
+
           </div>
         </div>
         <div className="container text-center">
@@ -144,20 +150,23 @@ class Challenge extends Component {
             </div>
           </form>
         </div>
-        <div className="container">
+        <div className="container text-center">
           {this.state.recipes.length ? (
             <ul>
               {this.state.recipes.map(recipe => (
-                <li key={recipe._id}>
-                  <strong>
-                    {recipe.title}
-                  </strong>
-                  <RecipeModal />
-                  <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
-                    ✗
-                  </span>
-                  <a href={'/profile/' + recipe.user}>{recipe.user}</a>
-                </li>
+
+                <div className="block" key={recipe._id}>
+                  <div className="crop">
+
+                    <RecipeModal id={recipe._id} src={recipe.image} />
+                  </div>
+                  <div className="infoText">
+                    <h4>{recipe.title}</h4>
+                    
+                    <a href={'/profile/' + recipe.user}>{recipe.user}</a>
+                  </div>
+                </div>
+
               ))}
             </ul>
           ) : (

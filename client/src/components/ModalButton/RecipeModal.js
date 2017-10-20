@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Modal from 'react-modal';
+import API from "../../utils/API";
 
 const customStyles = {
   overlay : {
@@ -27,30 +28,50 @@ const customStyles = {
   }
 };
 
+// <button type="button" className="close" onClick={this.closeModal} aria-label="Close">
+//   <span aria-hidden="true">&times;</span>
+// </button>
+
 class RecipeModal extends Component {
 	constructor() {
 	    super();
 	 
 	    this.state = {
-	      modalIsOpen: false
+	      modalIsOpen: false,
+        recipe: [],
+        ingredients: []
 	    };
 	 
 	    this.openModal = this.openModal.bind(this);
 	    this.closeModal = this.closeModal.bind(this);
 	}
+
+    loadRecipe() {
+      API.getRecipe(this.props.id)
+      .then(res => {
+        this.setState({
+          recipe: res.data.results,
+          ingredients: res.data.results.ingredients
+        })
+      })
+      .catch(err => console.log(err));
+    }
 	 
     openModal() {
-      	this.setState({modalIsOpen: true});
+      this.loadRecipe();
+      this.setState({modalIsOpen: true});
     }
 	   
     closeModal() {
-      	this.setState({modalIsOpen: false});
+      this.setState({modalIsOpen: false});
     }
+
+
 	   
     render() {
       	return (
       	  <div>
-      	    <button className="btn btn-default" onClick={this.openModal}>View Recipe</button>
+      	    <img className="imgBlock" src={this.props.src} onClick={this.openModal} alt='recipe' />
       	    <Modal
       	      isOpen={this.state.modalIsOpen}
       	      onRequestClose={this.closeModal}
@@ -58,27 +79,39 @@ class RecipeModal extends Component {
       	      contentLabel="Example Modal"
       	    >
       	    	<div className="modal-dialog" role="document">
-				    <div className="modal-content">
-				      	<div className="modal-header">
-				        	<h3 className="modal-title" id="commentModalLabel">
-				          		Recipe Name
-				          		<button type="button" className="close" onClick={this.closeModal} aria-label="Close">
-				            		<span aria-hidden="true">&times;</span>
-				          		</button>
-				        	</h3>
-				      	</div>
-				      	<div className="modal-body">
+    				    <div className="modal-content">
+    				      	<div className="modal-header">
+    				        	<h3 className="modal-title" id="commentModalLabel">
+    				          		{this.state.recipe.title}
+    				        	</h3>
+    				      	</div>
+    				      	<div className="modal-body">
+                      <div className="row">
+                        <div className="col-sm-6">
+                          <div className="crop">
+                            <img className="imgBlock" src={this.state.recipe.image} alt='recipe' />
+                          </div>
+                        </div>
+                        <div className="col-sm-6">
+                          <h5>Ingredients</h5>
+                          {this.state.ingredients.map((item, index) => (
+                            <div key={index}> {item} </div>
+                          ))}
+                          <hr />
+                          <h5>How to Cook It</h5>
+                          <div>{this.state.recipe.method}</div>
+                        </div>
+                      </div>
+                      
 
-				        	
+    				      	</div>
+    				      	<div className="modal-footer">
 
-				      	</div>
-				      	<div className="modal-footer">
+    				        	<button type="button" className="btn btn-secondary" onClick={this.closeModal}>Close</button>
 
-				        	<button type="button" className="btn btn-secondary" onClick={this.closeModal}>Close</button>
-
-				      	</div>
-				    </div>
-				</div>
+    				      	</div>
+    				    </div>
+    				  </div>
       	    </Modal>
       	  </div>
       );

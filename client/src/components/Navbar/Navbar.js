@@ -15,15 +15,15 @@ const Navbar = (props) =>
         <i className="fa fa-bars"></i>
       </button>
       <div className="collapse navbar-collapse" id="navbarResponsive">
-        {props.userInfo ?
+        {props.userInfo ? (
 
           <ul className="navbar-nav ml-auto">
 
-            <li className="nav-item"{...window.location.pathname === "/challenges" ? "active" : ""}>
+            <li className="nav-item">
               <Link className="nav-link js-scroll-trigger" to="/challenges">Discover</Link>
             </li>
 
-            <li className="nav-item"{...window.location.pathname === "/login" ? "active" : ""}>
+            <li className="nav-item">
               <Link className="nav-link js-scroll-trigger" to={"/profile/" + props.userInfo}>Profile</Link>
             </li>
 
@@ -32,13 +32,13 @@ const Navbar = (props) =>
             </li>
 
           </ul>
-          :
+          ) : (
           <ul className="navbar-nav ml-auto">
             <li>
               <div className="navbar-text">Welcome</div>
             </li>
           </ul>
-        }
+        )}
       </div>
     </div>
   </nav>;

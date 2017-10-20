@@ -4,8 +4,6 @@ import ModalButton from "../../components/ModalButton/ModalButton.js";
 import RecipeModal from "../../components/ModalButton/RecipeModal.js";
 import Navbar from "../../components/Navbar";
 
-let ingredients = [];
-
 class Profile extends Component {
   state = {
     user: [],
@@ -14,6 +12,10 @@ class Profile extends Component {
   };
 
   componentDidMount() {
+    this.loadProfile();
+  };
+
+  componentDidUpdate() {
     this.loadProfile();
   };
 
@@ -42,8 +44,7 @@ class Profile extends Component {
           this.setState({ 
             recipes: res.data.results
           })
-          console.log("Results:" + res.data.results);
-          ingredients = res.data.results.ingredients
+          // console.log("Results:" + res.data.results);
         }})
       .catch(err => console.log(err));
   };
@@ -77,7 +78,7 @@ class Profile extends Component {
                       </div>
                     </div>
                   )}
-                    <span><a href="/search">Posts</a> | <a href="/search">Followers</a> | <a href="/search">Following</a></span>
+                    <span><a href="#">Posts</a> | <a href="#">Followers</a> | <a href="#">Following</a></span>
                     <p>Bio goes here</p>
 
                 </div>
@@ -86,7 +87,6 @@ class Profile extends Component {
             <div className="col-sm-1"></div>
           </div>
         </div>
-
         <div className="container text-center">
           {this.state.recipes.length ? (
             <ul>
@@ -94,8 +94,7 @@ class Profile extends Component {
 
                 <div className="block" key={recipe._id}>
                   <div className="crop">
-                    <RecipeModal key={recipe._id} />
-                      <img className="imgBlock" src={recipe.image} alt='recipe' />
+                    <RecipeModal id={recipe._id} src={recipe.image} />
                   </div>
                   <div className="infoText">
                     <h4>{recipe.title}</h4>

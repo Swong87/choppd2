@@ -30,8 +30,7 @@ class Discover extends Component {
             currentUser: res.data.sess.passport.user,
             challenges: res.data.results,
             title: "",
-            image: "",
-            ingredients: ""
+            image: ""
            })
         }
       }).catch(err => console.log(err));
