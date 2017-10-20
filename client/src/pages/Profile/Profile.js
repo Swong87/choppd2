@@ -15,7 +15,7 @@ class Profile extends Component {
     this.loadProfile();
   };
 
-  componentDidUpdate() {
+  componentWillReceiveProps() {
     this.loadProfile();
   };
 
