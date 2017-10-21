@@ -9,7 +9,7 @@ body {
   width: 100%;
   height: 100%;
   color: #333;
-  background-color: #ededed; }
+  background-color: #fefefe; }
 
 html {
   width: 100%;
@@ -21,7 +21,7 @@ html {
   height: auto;
   padding: 200px;
   text-align: center;
-  color: #ededed;
+  color: #fefefe;
   background-color: black;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -32,7 +32,7 @@ html {
     vertical-align: middle; }
     .masthead .intro-body .brand-heading {
       font-size: 50px;
-      padding-top: 100px; }
+      padding-top: 50px; }
     .masthead .intro-body .intro-text {
       font-size: 18px; }
   @media (min-width: 768px) {
@@ -53,18 +53,18 @@ html {
   #mainNav .navbar-toggler {
     font-size: 14px;
     padding: 11px;
-    color: #ededed;
-    border: 1px solid #ededed; }
+    color: #fefefe;
+    border: 1px solid #fefefe; }
   #mainNav .navbar-brand {
     font-weight: 700; }
   #mainNav a {
-    color: #ededed; }
+    color: #fefefe; }
   #mainNav .navbar-nav .nav-item {
     -webkit-transition: background 0.3s ease-in-out;
     -moz-transition: background 0.3s ease-in-out;
     transition: background 0.3s ease-in-out; }
     #mainNav .navbar-nav .nav-item:hover {
-      color: fade(#ededed, 80%);
+      color: fade(#fefefe, 80%);
       outline: none;
       background-color: transparent; }
     #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
@@ -89,7 +89,7 @@ html {
         outline: none;
         background-color: rgba(255, 255, 255, 0.3); }
         #mainNav .nav-link.active:hover {
-          color: #ededed; } }
+          color: #fefefe; } }
 
 .title {
   font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -97,10 +97,6 @@ html {
   text-transform: uppercase;
   letter-spacing: -1px;
 }
-
-.content-section {
-  padding-top: 80px;
-  padding-bottom: 80px; }
 
 .block {
   display: inline-block;
@@ -141,7 +137,7 @@ html {
 }
 
 .infoText {
-  color: #ededed;
+  color: #fefefe;
   padding: 10px;
 }
 
@@ -150,7 +146,7 @@ html {
 }
 
 .topPad {
-  padding-top: 200px;
+  padding-top: 150px;
 }
 
 .bottomPad {

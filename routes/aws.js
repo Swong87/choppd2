@@ -1,4 +1,5 @@
 const express = require("express");
+const router = require("express").Router();
 const multer = require("multer");
 const AWS = require("aws-sdk");
 
@@ -11,7 +12,7 @@ AWS.config.update(
     subregion: 'us-west-2',
   });
 
-const router = new express.Router();
+// const router = new express.Router();
 
 // Multer config
 // memory storage keeps file data in a buffer

@@ -5,12 +5,14 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Challenge from "./pages/Challenge";
 import Footer from "./components/Footer";
+import Alert from "./components/Alert";
 
 const App = () =>
   <Router>
     <div>
       <Switch>
         <Route exact path="/" component={About} />
+        <Route exact path="/alert" component={Alert} />
         <Route exact path="/challenges" component={Discover} />
         <Route exact path="/profile/:id" component={Profile} />
         <Route exact path="/challenge/:id" component={Challenge} />

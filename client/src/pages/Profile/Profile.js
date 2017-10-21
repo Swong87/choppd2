@@ -9,7 +9,8 @@ class Profile extends Component {
   state = {
     user: [],
     recipes: [],
-    currentUser: ""
+    currentUser: "",
+    bio: ""
   };
 
   componentDidMount() {
@@ -28,7 +29,9 @@ class Profile extends Component {
         } else {
           this.setState({ 
             currentUser: res.data.sess.passport.user,
-            user: res.data.results
+            user: res.data.results,
+            recipes: "",
+            bio: res.data.results.bio
           })
           this.loadRecipes();
         }
@@ -78,7 +81,8 @@ class Profile extends Component {
                       <h1 className="display">{this.state.currentUser}</h1>
                       <ModalButton id={this.state.user._id} />
                       <span><a href="#">Posts</a> | <a href="#">Followers</a> | <a href="#">Following</a></span>
-                      <h5>{this.state.user.bio}</h5>
+                      <br />
+                      <h5>{this.state.bio}</h5>
                     </div>
                   ) : (
                     <div>
@@ -87,7 +91,8 @@ class Profile extends Component {
                         <button className="btn btn-primary">Follow</button>
                       </div>
                       <span><a href="#">Posts</a> | <a href="#">Followers</a> | <a href="#">Following</a></span>
-                      <p>{this.state.user.bio}</p>
+                      <br />
+                      <h5>{this.state.bio}</h5>
                     </div>
                   )}
                 </div>

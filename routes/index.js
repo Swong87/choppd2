@@ -6,7 +6,7 @@ const aws = require("./aws");
 // API Routes
 router.use("/api", apiRoutes);
 
-// API Routes
+// AWS Routes
 router.use("/upload", aws);
 
 // If no API routes are hit, send the React app

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Dropzone from 'react-dropzone';
 import upload from 'superagent';
 
- class FileUpload extends React.Component{
+ class FileUpload extends Component{
     onDrop = (files) => {
       upload.post('/upload')
       .attach('theseNamesMustMatch', files[0])
