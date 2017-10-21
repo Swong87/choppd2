@@ -91,6 +91,7 @@ class About extends Component {
 												type="text" 
 												name="username" 
 												placeholder="Username"
+												value="aaa"
 												onChange={this.handleInputChange}
 											 />
 										</div>
@@ -100,6 +101,7 @@ class About extends Component {
 												type="password" 
 												name="password" 
 												placeholder="Password"
+												value="aaa"
 												onChange={this.handleInputChange}
 											/>
 										</div>

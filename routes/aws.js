@@ -9,7 +9,7 @@ AWS.config.update(
   {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    subregion: 'us-west-2',
+    subregion: 'us-east-2',
   });
 
 // const router = new express.Router();
@@ -23,11 +23,12 @@ const upload = multer({
 });
 
 router.route('/')
-  .post(upload.single('theseNamesMustMatch'), (req, res) => {
+  .post(upload.single('img'), (req, res) => {
   // req.file is the 'theseNamesMustMatch' file
+  console.log(req.file.originalname);
   s3.putObject({
       Bucket: 'choppdimages',
-      Key: 'uploaded-image', 
+      Key: req.file.originalname, 
       Body: req.file.buffer,
       ACL: 'public-read', // your permisions  
     }, (err) => { 
