@@ -27,6 +27,7 @@ passport.deserializeUser(User.deserializeUser());
 // Add routes, both API and view
 app.use(routes);
 
+
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB

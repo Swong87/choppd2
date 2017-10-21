@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import ModalButton from "../../components/ModalButton/ModalButton.js";
 import RecipeModal from "../../components/ModalButton/RecipeModal.js";
 import Navbar from "../../components/Navbar";
+import FileUpload from "../../components/FileUpload/FileUpload";
 
 class Profile extends Component {
   state = {
@@ -69,6 +70,7 @@ class Profile extends Component {
             <div className="col-sm-10">
               <div className="row text-center">
                 <div className="col-sm-6">
+                  <FileUpload />
                 </div>
                 <div className="col-sm-6">
                   {this.state.currentUser === this.props.match.params.id ? (
