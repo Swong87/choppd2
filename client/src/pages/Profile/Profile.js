@@ -73,7 +73,9 @@ class Profile extends Component {
             <div className="col-sm-10">
               <div className="row text-center">
               {this.state.user.image ? (
-                <img className="imgBlock" src={"https://s3.us-east-2.amazonaws.com/choppdimages/" + "IMG_0202.JPG"} />
+                <div className="col-sm-6">
+                  <img className="imgBlock" src={this.state.user.image} />
+                </div>
               ) : (
                 <div className="col-sm-6">
                   <FileUpload id={this.state.currentUser} />

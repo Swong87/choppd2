@@ -45,7 +45,7 @@ class About extends Component {
 					})
 				});
 		} else {
-			alert("WRONG!");
+			alert("Please fill in both fields.");
 		}
 	};
 
@@ -69,6 +69,8 @@ class About extends Component {
 						error: "register"
 					})
 				});
+		} else {
+			alert("Please fill in both fields.");
 		}
 	};
 
