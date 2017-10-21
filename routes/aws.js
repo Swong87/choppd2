@@ -25,11 +25,12 @@ const upload = multer({
 router.route('/')
   .post(upload.single('img'), (req, res) => {
   // req.file is the 'theseNamesMustMatch' file
-  console.log(req.file.originalname);
+  console.log(req.file);
+  console.log(res);
   s3.putObject({
       Bucket: 'choppdimages',
       Key: req.file.originalname, 
-      Body: req.file.buffer,
+      Body: req.file,
       ACL: 'public-read', // your permisions  
     }, (err) => { 
       if (err) return res.status(400).send(err);

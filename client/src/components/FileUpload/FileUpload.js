@@ -4,6 +4,7 @@ import upload from 'superagent';
 
  class FileUpload extends Component{
     onDrop = (files) => {
+      console.log("WHAT :" + upload.post('/upload'));
       upload.post('/upload')
       .attach('img', files[0])
       .end((err, res) => {
@@ -12,7 +13,7 @@ import upload from 'superagent';
         } else {
         alert('File uploaded!');
         }
-        console.log(res);
+        // console.log(res);
       })
     }
 
