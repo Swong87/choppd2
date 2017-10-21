@@ -2,6 +2,7 @@ const express = require("express");
 const router = require("express").Router();
 const multer = require("multer");
 const AWS = require("aws-sdk");
+const db = require('../models');
 
 // Amazon s3 config
 const s3 = new AWS.S3();
@@ -22,11 +23,13 @@ const upload = multer({
   limits: { fileSize: 52428800 },
 });
 
-router.route('/')
+router.route('/:id')
   .post(upload.single('img'), (req, res) => {
   // req.file is the 'theseNamesMustMatch' file
-  console.log(req.file);
-  console.log(res);
+  const selected = req.params.id;
+  const baseURL = "https://s3.us-east-2.amazonaws.com/choppdimages/";
+  // console.log(req.file);
+  // console.log(res);
   s3.putObject({
       Bucket: 'choppdimages',
       Key: req.file.originalname, 
@@ -35,7 +38,13 @@ router.route('/')
     }, (err) => { 
       if (err) return res.status(400).send(err);
       res.send('File uploaded to S3');
-  });
+  }),
+  db.User
+    .findOneAndUpdate(
+      { username: selected },
+      {$set: { image: baseURL + req.file.originalname } })
+      .then(dbModel => res.json({results: dbModel, sess: req.session}))
+      .catch(err => console.log(err));
 });
 
 module.exports = router;

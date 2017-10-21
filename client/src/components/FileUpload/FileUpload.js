@@ -5,7 +5,7 @@ import upload from 'superagent';
  class FileUpload extends Component{
     onDrop = (files) => {
       console.log("WHAT :" + upload.post('/upload'));
-      upload.post('/upload')
+      upload.post('/upload/' + this.props.id)
       .attach('img', files[0])
       .end((err, res) => {
         if (err) { 
