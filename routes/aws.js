@@ -27,6 +27,7 @@ router.route('/:id')
   .post(upload.single('img'), (req, res) => {
   // req.file is the 'theseNamesMustMatch' file
   const selected = req.params.id;
+  const baseURL = "https://s3.us-east-2.amazonaws.com/choppdimages/";
   // console.log(req.file);
   // console.log(res);
   s3.putObject({
@@ -37,17 +38,12 @@ router.route('/:id')
     }, (err) => { 
       if (err) return res.status(400).send(err);
       // res.send('File uploaded to S3');
-  }), function(req, res){
-    
-    const baseURL = "https://s3.us-east-2.amazonaws.com/choppdimages/";
-    db.User
+  }),
+  db.User
     .findOneAndUpdate(
       { username: selected },
       { $set: { image: baseURL + req.file.originalname } })
-      .then(dbModel => res.json({results: dbModel, sess: req.session}))
       .catch(err => console.log(err));
-  }
-  
 });
 
 module.exports = router;
