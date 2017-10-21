@@ -30,7 +30,7 @@ router.route('/')
   s3.putObject({
       Bucket: 'choppdimages',
       Key: req.file.originalname, 
-      Body: req.file,
+      Body: req.file.buffer,
       ACL: 'public-read', // your permisions  
     }, (err) => { 
       if (err) return res.status(400).send(err);
