@@ -38,7 +38,7 @@ class About extends Component {
 						console.log("no user");
 					}
 				})
-				.catch(err => console.log("OHDAMN! " + err));
+				.catch(err => console.log(err));
 		}
 	};
 
@@ -57,7 +57,7 @@ class About extends Component {
 						return (<Alert />);
 					}
 				})
-				.catch(err => console.log("OHSHIZZ! " + err));
+				.catch(err => console.log(err));
 		}
 	};
 

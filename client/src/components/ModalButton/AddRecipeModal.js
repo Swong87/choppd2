@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import API from "../../utils/API";
 
 const customStyles = {
   overlay : {
@@ -33,12 +34,39 @@ class AddRecipeModal extends Component {
 	    super();
 	 
 	    this.state = {
-	      modalIsOpen: false
+	      modalIsOpen: false,
+        title: "",
+        image: "",
+        ingredients: [],
+        method: ""
 	    };
 	 
 	    this.openModal = this.openModal.bind(this);
 	    this.closeModal = this.closeModal.bind(this);
 	}
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.title) {
+      API.saveRecipe({
+        title: this.state.title,
+        user: this.props.user,
+        image: this.state.image,
+        ingredients: this.state.ingredients.split(', '),
+        method: this.state.method
+      }, this.props.id)
+        .then(res => console.log(res),
+          this.closeModal())
+        .catch(err => console.log(err));
+    }
+  };
 	 
     openModal() {
       	this.setState({modalIsOpen: true});
@@ -51,35 +79,75 @@ class AddRecipeModal extends Component {
     render() {
       	return (
       	  <div>
-      	    <button className="btn btn-default" onClick={this.openModal}>Edit Profile</button>
-      	    <Modal
+            <br />
+      	    <button className="btn btn-primary" id="round" onClick={this.openModal}>+</button>
+            <Modal
       	      isOpen={this.state.modalIsOpen}
       	      onRequestClose={this.closeModal}
       	      style={customStyles}
       	      contentLabel="Example Modal"
       	    >
-      	    	<div className="modal-dialog" role="document">
-				    <div className="modal-content">
-				      	<div className="modal-header">
-				        	<h3 className="modal-title" id="commentModalLabel">
-				          		Submit Recipe
-				          		<button type="button" className="close" onClick={this.closeModal} aria-label="Close">
-				            		<span aria-hidden="true">&times;</span>
-				          		</button>
-				        	</h3>
-				      	</div>
-				      	<div className="modal-body">
-
-				        	
-
-				      	</div>
-				      	<div className="modal-footer">
-
-				        	<button type="button" className="btn btn-secondary" onClick={this.closeModal}>Close</button>
-
-				      	</div>
-				    </div>
-				</div>
+      	    	<div role="document">
+    				    <div className="wide">
+  				      	<div className="modal-header">
+  				        	<h3 className="modal-title" id="commentModalLabel">
+  				          	Submit Recipe
+  				        	</h3>
+  				      	</div>
+  				      	<div className="modal-body">
+                    <form>
+                      <div className="form-group">
+                        <div>
+                          <input
+                            style={{width:550}}
+                            onChange={this.handleInputChange}
+                            name="title"
+                            placeholder="Title (required)"
+                          />
+                        </div>
+                        <br />
+                        <div>
+                          <input 
+                            style={{width:550}}
+                            onChange={this.handleInputChange}
+                            name="image"
+                            placeholder="Image"
+                          />
+                        </div>
+                        <br />
+                        <div>
+                          <input 
+                            style={{width:550}}
+                            onChange={this.handleInputChange}
+                            name="ingredients"
+                            placeholder="Ingredients"
+                          />
+                        </div>
+                        <br />
+                        <div>
+                          <textarea
+                            rows="5"
+                            cols="76" 
+                            onChange={this.handleInputChange}
+                            name="method"
+                            placeholder="Method of Cooking"
+                          />
+                        </div>
+                      </div>
+                    </form>
+  				      	</div>
+  				      	<div className="modal-footer">
+  				        	<button type="button" className="btn btn-secondary" onClick={this.closeModal}>Close</button>
+                    <button
+                      disabled={!(this.state.title)}
+                      onClick={this.handleFormSubmit} 
+                      className="btn btn-primary"
+                    >
+                      Submit Recipe
+                    </button>
+  				      	</div>
+				        </div>
+				      </div>
       	    </Modal>
       	  </div>
       );

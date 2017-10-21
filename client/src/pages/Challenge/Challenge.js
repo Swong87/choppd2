@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import RecipeModal from "../../components/ModalButton/RecipeModal.js";
 import Navbar from "../../components/Navbar";
+import AddRecipeModal from "../../components/ModalButton/AddRecipeModal.js";
 
 let ingredients = [];
 
-// <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
-// ✗
-// </span>
+
 
 class Challenge extends Component {
 
@@ -23,6 +22,10 @@ class Challenge extends Component {
 
   componentDidMount() {
     this.loadChallenge();
+    this.loadRecipes();
+  };
+
+  componentWillUpdate() {
     this.loadRecipes();
   };
 
@@ -92,15 +95,15 @@ class Challenge extends Component {
         <Navbar userInfo={this.state.currentUser} />
         <div className="topPad container">
           <div className="text-center">
-            <h1>
+            <h1 className="title">
               {this.state.challenge.title}
             </h1>
-
-              <img className="challengeImgBlock" src={this.state.challenge.image} alt='challenge' />
-
+            <img className="challengeImgBlock" src={this.state.challenge.image} alt='challenge' />
           </div>
         </div>
         <div className="container text-center">
+          <AddRecipeModal user={this.state.currentUser} id={this.props.match.params.id} />
+          <br />
           <h3>Basket Ingredients</h3>
           {ingredients.length ? (
             <div>
@@ -117,38 +120,7 @@ class Challenge extends Component {
           )}
         </div>
         <div className="bottomPad container text-center">
-          <form>
-            <div className="form-group">
-              <input
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <input 
-                onChange={this.handleInputChange}
-                name="image"
-                placeholder="Image"
-              />
-              <input 
-                onChange={this.handleInputChange}
-                name="ingredients"
-                placeholder="Ingredients"
-              />
-              <input 
-                onChange={this.handleInputChange}
-                name="method"
-                placeholder="Method of Cooking"
-              />
-            
-              <button 
-                disabled={!(this.state.title)}
-                onClick={this.handleFormSubmit} 
-                className="btn btn-success"
-              >
-                Submit Recipe
-              </button>
-            </div>
-          </form>
+          
         </div>
         <div className="container text-center">
           {this.state.recipes.length ? (
@@ -157,7 +129,9 @@ class Challenge extends Component {
 
                 <div className="block" key={recipe._id}>
                   <div className="crop">
-
+                    <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
+                    ✗
+                    </span>
                     <RecipeModal id={recipe._id} src={recipe.image} />
                   </div>
                   <div className="infoText">

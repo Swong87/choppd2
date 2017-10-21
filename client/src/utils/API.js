@@ -39,18 +39,23 @@ export default {
   saveChallenge: function(challengeData) {
     return axios.post("/api/challenges", challengeData);
   },
-  updateChallenge: function(id) {
-    return axios.put("/api/challenges/" + id);
-  },
+
   getUser: function(id) {
     return axios.get("/api/users/" + id);
   },
+
+  updateUser: function( userData, id) {
+    return axios.put("/api/users/" + id, userData);
+  },
+
   login: function(userData) {
     return axios.post("/api/auth/login", userData);
   },
+
   logout: function() {
     return axios.get("/api/auth/logout");
   },
+
   register: function(userData) {
     return axios.post("/api/auth/register", userData);
   },

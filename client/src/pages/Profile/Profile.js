@@ -49,6 +49,12 @@ class Profile extends Component {
       .catch(err => console.log(err));
   };
 
+  deleteRecipe = id => {
+    API.deleteRecipe(id)
+      .then(res => this.loadRecipes())
+      .catch(err => console.log(err));
+  };
+
   handleInputChange = event => {
     this.setState({ search: event.target.value });
   };
@@ -68,7 +74,9 @@ class Profile extends Component {
                   {this.state.currentUser === this.props.match.params.id ? (
                     <div>
                       <h1 className="display">{this.state.currentUser}</h1>
-                      <ModalButton />
+                      <ModalButton id={this.state.user._id} />
+                      <span><a href="#">Posts</a> | <a href="#">Followers</a> | <a href="#">Following</a></span>
+                      <h5>{this.state.user.bio}</h5>
                     </div>
                   ) : (
                     <div>
@@ -76,11 +84,10 @@ class Profile extends Component {
                       <div>
                         <button className="btn btn-primary">Follow</button>
                       </div>
+                      <span><a href="#">Posts</a> | <a href="#">Followers</a> | <a href="#">Following</a></span>
+                      <p>{this.state.user.bio}</p>
                     </div>
                   )}
-                    <span><a href="#">Posts</a> | <a href="#">Followers</a> | <a href="#">Following</a></span>
-                    <p>Bio goes here</p>
-
                 </div>
               </div>
             </div>

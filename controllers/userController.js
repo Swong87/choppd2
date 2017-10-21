@@ -15,5 +15,20 @@ module.exports = {
     } else {
       res.json({ error: "Please login", statusCode: 401 })
     }
+  },
+
+  updateUser: function(req, res) {
+    console.log("it works!");
+    if (req.user) {
+      const id = req.params.id;
+      console.log("it works!");
+      db.User.findOneAndUpdate(
+        { _id: id }, 
+        { $set: { bio: req.body.bio } })
+        .then(dbModel => res.json({results: dbModel, sess: req.session}))
+        .catch(err => console.log(err));
+    } else {
+      res.json({ error: "Please login", statusCode: 401 })
+    }
   }
 };

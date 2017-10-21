@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Modal from 'react-modal';
+import API from "../../utils/API";
 
 const customStyles = {
-	 overlay : {
+	overlay : {
     position          : 'fixed',
     top               : 0,
     left              : 0,
@@ -29,68 +30,99 @@ const customStyles = {
 
 class ModalButton extends Component {
 	constructor() {
-	    super();
-	 
-	    this.state = {
-	      modalIsOpen: false
-	    };
-	 
-	    this.openModal = this.openModal.bind(this);
-	    this.closeModal = this.closeModal.bind(this);
+    super();
+ 
+    this.state = {
+      modalIsOpen: false,
+      bio: ""
+    };
+ 
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
 	}
-	 
-    openModal() {
-      	this.setState({modalIsOpen: true});
-    }
-	   
-    closeModal() {
-      	this.setState({modalIsOpen: false});
-    }
-	   
-    render() {
-      	return (
-      	  <div>
-      	    <button className="btn btn-default" onClick={this.openModal}>Edit Profile</button>
-      	    <Modal
-      	      isOpen={this.state.modalIsOpen}
-      	      onRequestClose={this.closeModal}
-      	      style={customStyles}
-      	      contentLabel="Example Modal"
-      	    >
-      	    	<div className="modal-dialog modal-lg" role="document">
-						    <div className="modal-content">
-					      	<div className="modal-header">
-					        	<h3 className="modal-title" id="commentModalLabel">
-				          		Edit Profile
-				          		<button type="button" className="close" onClick={this.closeModal} aria-label="Close">
-				            		<span aria-hidden="true">&times;</span>
-				          		</button>
-					        	</h3>
-					      	</div>
-  			      	  <div className="modal-body">
-  									<label>Bio</label>
-  						        <form id="commentForm">
-  									
-  						          <textarea rows="5" cols="50" placeholder="Bio Summary" form="commentForm"></textarea>
 
-  						          <input id="comment" name="comment" value="true" type="hidden" />
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
 
-  						        </form>
+  handleSubmit = (event) => {
+    event.preventDefault();
+    API.updateUser({
+      bio: this.state.bio
+    }, this.props.id)
+    .then(res => console.log(res),
+      this.closeModal())
+    .catch(err => console.log(err));
+  }
+ 
+  openModal() {
+    	this.setState({modalIsOpen: true});
+  }
+   
+  closeModal() {
+    	this.setState({modalIsOpen: false});
+  }
+   
+  render() {
+  	return (
+  	  <div>
+  	    <button className="btn btn-default" onClick={this.openModal}>Edit Profile</button>
+  	    <Modal
+  	      isOpen={this.state.modalIsOpen}
+  	      onRequestClose={this.closeModal}
+  	      style={customStyles}
+  	      contentLabel="Example Modal"
+  	    >
+  	    	<div role="document">
+				    <div className="wide">
+			      	<div className="modal-header">
+			        	<h3 className="modal-title" id="commentModalLabel">
+		          		Edit Profile
+			        	</h3>
+			      	</div>
+		      	  <div className="modal-body">
+								<h3>Bio</h3>
+				        <div className="form-group">
+							     
+                  <textarea
+                    rows="5" 
+                    cols="76"
+                    onChange={this.handleInputChange}
+                    name="bio"
+                    placeholder="Write something about yourself"
+                  />
 
-  						    </div>
-  						    <div className="modal-footer">
+				        </div>
 
-  						      <button type="button" className="btn btn-secondary" onClick={this.closeModal}>Close</button>
+					    </div>
+					    <div className="modal-footer">
 
-  						      <button id="savenote" type="button" className="btn btn-primary">Submit</button>
+					      <button 
+                  type="button" 
+                  className="btn btn-secondary" 
+                  onClick={this.closeModal}
+                  >
+                  Close
+                </button>
 
-  						    </div>
-						    </div>
-						  </div>
-      	    </Modal>
-      	  </div>
-      );
-	  }
+                <button
+                  type="button"
+                  onClick={this.handleSubmit} 
+                  className="btn btn-primary"
+                >
+                  Submit
+                </button>
+
+					    </div>
+				    </div>
+				  </div>
+  	    </Modal>
+  	  </div>
+    );
+  }
 }
 
 

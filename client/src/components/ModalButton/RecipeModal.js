@@ -34,88 +34,88 @@ const customStyles = {
 
 class RecipeModal extends Component {
 	constructor() {
-	    super();
-	 
-	    this.state = {
-	      modalIsOpen: false,
-        recipe: [],
-        ingredients: []
-	    };
-	 
-	    this.openModal = this.openModal.bind(this);
-	    this.closeModal = this.closeModal.bind(this);
+    super();
+ 
+    this.state = {
+      modalIsOpen: false,
+      recipe: [],
+      ingredients: []
+    };
+ 
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
 	}
 
-    loadRecipe() {
-      API.getRecipe(this.props.id)
-      .then(res => {
-        this.setState({
-          recipe: res.data.results,
-          ingredients: res.data.results.ingredients
-        })
+  loadRecipe() {
+    API.getRecipe(this.props.id)
+    .then(res => {
+      this.setState({
+        recipe: res.data.results,
+        ingredients: res.data.results.ingredients
       })
-      .catch(err => console.log(err));
-    }
-	 
-    openModal() {
-      this.loadRecipe();
-      this.setState({modalIsOpen: true});
-    }
-	   
-    closeModal() {
-      this.setState({modalIsOpen: false});
-    }
+    })
+    .catch(err => console.log(err));
+  }
+ 
+  openModal() {
+    this.loadRecipe();
+    this.setState({modalIsOpen: true});
+  }
+   
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
 
 
-	   
-    render() {
-      	return (
-      	  <div>
-      	    <img className="imgBlock" src={this.props.src} onClick={this.openModal} alt='recipe' />
-      	    <Modal
-      	      isOpen={this.state.modalIsOpen}
-      	      onRequestClose={this.closeModal}
-      	      style={customStyles}
-      	      contentLabel="Example Modal"
-      	    >
-      	    	<div className="modal-dialog" role="document">
-    				    <div className="modal-content">
-    				      	<div className="modal-header">
-    				        	<h3 className="modal-title" id="commentModalLabel">
-    				          		{this.state.recipe.title}
-    				        	</h3>
-    				      	</div>
-    				      	<div className="modal-body">
-                      <div className="row">
-                        <div className="col-sm-6">
-                          <div className="crop">
-                            <img className="imgBlock" src={this.state.recipe.image} alt='recipe' />
-                          </div>
-                        </div>
-                        <div className="col-sm-6">
-                          <h5>Ingredients</h5>
-                          {this.state.ingredients.map((item, index) => (
-                            <div key={index}> {item} </div>
-                          ))}
-                          <hr />
-                          <h5>How to Cook It</h5>
-                          <div>{this.state.recipe.method}</div>
+   
+  render() {
+    	return (
+    	  <div>
+    	    <img className="imgBlock" src={this.props.src} onClick={this.openModal} alt='recipe' />
+    	    <Modal
+    	      isOpen={this.state.modalIsOpen}
+    	      onRequestClose={this.closeModal}
+    	      style={customStyles}
+    	      contentLabel="Example Modal"
+    	    >
+    	    	<div role="document">
+  				    <div>
+  				      	<div className="modal-header">
+  				        	<h3 className="modal-title" id="commentModalLabel">
+  				          		{this.state.recipe.title}
+  				        	</h3>
+  				      	</div>
+  				      	<div className="text-center modal-body">
+                    <div className="row">
+                      <div className="col-sm-6">
+                        <div>
+                          <img className="modalImgBlock" src={this.state.recipe.image} alt='recipe' />
                         </div>
                       </div>
-                      
+                      <div className="col-sm-6">
+                        <h5>Ingredients</h5>
+                        {this.state.ingredients.map((item, index) => (
+                          <div key={index}> {item} </div>
+                        ))}
+                        <hr />
+                        <h5>How to Cook It</h5>
+                        <div>{this.state.recipe.method}</div>
+                      </div>
+                    </div>
+                    
 
-    				      	</div>
-    				      	<div className="modal-footer">
+  				      	</div>
+  				      	<div className="modal-footer">
 
-    				        	<button type="button" className="btn btn-secondary" onClick={this.closeModal}>Close</button>
+  				        	<button type="button" className="btn btn-secondary" onClick={this.closeModal}>Close</button>
 
-    				      	</div>
-    				    </div>
-    				  </div>
-      	    </Modal>
-      	  </div>
-      );
-	  }
+  				      	</div>
+  				    </div>
+  				  </div>
+    	    </Modal>
+    	  </div>
+    );
+  }
 }
 
 
