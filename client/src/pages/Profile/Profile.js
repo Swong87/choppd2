@@ -74,14 +74,14 @@ class Profile extends Component {
               <div className="row text-center">
               {this.state.user.image ? (
                 <div className="col-sm-6">
-                  <img className="imgBlock" src={this.state.user.image} />
+                  <img className="profileImage" src={this.state.user.image} />
                 </div>
               ) : (
                 <div className="col-sm-6">
                   <FileUpload id={this.state.currentUser} />
                 </div>
               )}
-                <div className="topPad col-sm-6">
+                <div className="col-sm-6">
                   {this.state.currentUser === this.props.match.params.id ? (
                     <div>
                       <h1 className="display">{this.state.currentUser}</h1>
