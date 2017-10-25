@@ -13,8 +13,6 @@ AWS.config.update(
     subregion: 'us-east-2',
   });
 
-// const router = new express.Router();
-
 // Multer config
 // memory storage keeps file data in a buffer
 const upload = multer({
@@ -23,26 +21,27 @@ const upload = multer({
   limits: { fileSize: 52428800 },
 });
 
+// When route '/upload/:id' is hit
 router.route('/:id')
   .post(upload.single('img'), (req, res) => {
-  // req.file is the 'theseNamesMustMatch' file
-  const selected = req.params.id;
-  const baseURL = "https://s3.us-east-2.amazonaws.com/choppdimages/";
-  // console.log(req.file);
-  // console.log(res);
-  s3.putObject({
-      Bucket: 'choppdimages',
-      Key: req.file.originalname, 
-      Body: req.file.buffer,
-      ACL: 'public-read', // your permisions  
-    }, (err) => { 
-      if (err) return res.status(400).send(err);
-      // res.send('File uploaded to S3');
-  }),
-  db.User
-    .findOneAndUpdate(
-      { username: selected },
-      { $set: { image: baseURL + req.file.originalname } })
+  // 'selected' holds the user id connected to where you upload the image
+    const selected = req.params.id;
+    // first part of image url
+    const baseURL = "https://s3.us-east-2.amazonaws.com/choppdimages/";
+    // Upload image to AWS
+    s3.putObject({
+        Bucket: 'choppdimages', // Your bucket name
+        Key: req.file.originalname, 
+        Body: req.file.buffer,
+        ACL: 'public-read', // your permissions  
+      }, (err) => { 
+        if (err) return res.status(400).send(err);
+    }),
+    // After uploading the image to AWS, save img url to user.image
+    db.User
+      .findOneAndUpdate(
+        { username: selected },
+        { $set: { image: baseURL + req.file.originalname } })
       .catch(err => console.log(err));
 });
 

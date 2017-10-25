@@ -17,11 +17,22 @@ module.exports = {
     }
   },
 
-  updateUser: function(req, res) {
-    console.log("it works!");
+  deletePic: function(req, res) {
     if (req.user) {
       const id = req.params.id;
-      console.log("it works!");
+      db.User.findOneAndUpdate(
+        { username: id }, 
+        { $unset: { image: "" } })
+        .then(dbModel => res.json({results: dbModel, sess: req.session}))
+        .catch(err => console.log(err));
+    } else {
+      res.json({ error: "Please login", statusCode: 401 })
+    }
+  },
+
+  updateUser: function(req, res) {
+    if (req.user) {
+      const id = req.params.id;
       db.User.findOneAndUpdate(
         { _id: id }, 
         { $set: { bio: req.body.bio } })

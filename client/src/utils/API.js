@@ -48,6 +48,10 @@ export default {
     return axios.put("/api/users/" + id, userData);
   },
 
+  deletePic: function(id) {
+    return axios.put("/api/byuser/" + id);
+  },
+
   login: function(userData) {
     return axios.post("/api/auth/login", userData);
   },

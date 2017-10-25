@@ -3,6 +3,35 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 
+// <form>
+//   <div className="form-group">
+//     <input  
+//       value={this.state.title}
+//       onChange={this.handleInputChange}
+//       name="title"
+//       placeholder="Title (required)"
+//     />
+//     <input  
+//       value={this.state.image}
+//       onChange={this.handleInputChange}
+//       name="image"
+//       placeholder="Image URL"
+//     />
+//     <input  
+//       value={this.state.ingredients}
+//       onChange={this.handleInputChange}
+//       name="ingredients"
+//       placeholder="Ingredients (seperated by commas)"
+//     />
+//     <button 
+//       disabled={!(this.state.title)}
+//       onClick={this.handleFormSubmit} 
+//       className="btn btn-success"
+//     >
+//       Submit Challenge
+//     </button>
+//   </div>
+// </form>
 
 class Discover extends Component {
 
@@ -67,35 +96,7 @@ class Discover extends Component {
       <div>
         <Navbar userInfo={this.state.currentUser} />
         <div className="topPad container text-center">
-          <form>
-            <div className="form-group">
-              <input  
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <input  
-                value={this.state.image}
-                onChange={this.handleInputChange}
-                name="image"
-                placeholder="Image URL"
-              />
-              <input  
-                value={this.state.ingredients}
-                onChange={this.handleInputChange}
-                name="ingredients"
-                placeholder="Ingredients (seperated by commas)"
-              />
-              <button 
-                disabled={!(this.state.title)}
-                onClick={this.handleFormSubmit} 
-                className="btn btn-success"
-              >
-                Submit Challenge
-              </button>
-            </div>
-          </form>
+          
         </div>
         <div className="container">
           {this.state.challenges.length ? (

@@ -176,3 +176,24 @@ html {
   height: 200px;
   border-radius: 50%;
 }
+.show-image {
+  width: 200px;
+}
+
+.show-image input.delete {
+    top:0;
+    left:30%;
+}
+
+.show-image input {
+    position:absolute;
+    display:none;
+}
+
+.show-image:hover img{
+    opacity:0.5;
+}
+
+.show-image:hover input {
+    display: block;
+}

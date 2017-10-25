@@ -18,6 +18,7 @@ class Profile extends Component {
   };
 
   componentWillReceiveProps() {
+    window.location.reload();
     this.loadProfile();
   };
 
@@ -59,6 +60,12 @@ class Profile extends Component {
       .catch(err => console.log(err));
   };
 
+  deletePic = id => {
+    API.deletePic(id)
+      .then(res => this.loadProfile())
+      .catch(err => console.log(err));
+  };
+
   handleInputChange = event => {
     this.setState({ search: event.target.value });
   };
@@ -71,27 +78,43 @@ class Profile extends Component {
           <div className="row">
             <div className="col-sm-1"></div>
             <div className="col-sm-10">
-              <div className="row text-center">
-              {this.state.user.image ? (
-                <div className="col-sm-6">
-                  <img className="profileImage" src={this.state.user.image} />
-                </div>
-              ) : (
-                <div className="col-sm-6">
-                  <FileUpload id={this.state.currentUser} />
-                </div>
-              )}
-                <div className="col-sm-6">
-                  {this.state.currentUser === this.props.match.params.id ? (
-                    <div>
+
+                {this.state.currentUser === this.props.match.params.id ? (
+                  <div className="row text-center">
+                    <div className="col-sm-6">
+                    {this.state.user.image ? (
+                      <div>
+                        <div className="show-image">
+                          <img className="profileImage" src={this.state.user.image} />
+                          <input onClick={() => this.deletePic(this.state.user.username)} className="btn delete" type="button" value="Delete" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <FileUpload
+                        onDrop={FileUpload.bind(this)}
+                        id={this.state.currentUser}
+                        />
+                      </div>
+                    )}
+                    </div>
+
+                    <div className="col-sm-6">
                       <h1 className="display">{this.state.currentUser}</h1>
                       <ModalButton id={this.state.user._id} />
                       <span><a href="#">Posts</a> | <a href="#">Followers</a> | <a href="#">Following</a></span>
                       <br />
                       <h5>{this.state.bio}</h5>
                     </div>
-                  ) : (
-                    <div>
+                  </div>
+                ) : (
+                  <div className="row text-center">
+                    <div className="col-sm-6">
+                      <div className="show-image">
+                        <img className="profileImage" src={this.state.user.image} />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
                       <h1 className="display">{this.props.match.params.id}</h1>
                       <div>
                         <button className="btn btn-primary">Follow</button>
@@ -100,9 +123,9 @@ class Profile extends Component {
                       <br />
                       <h5>{this.state.bio}</h5>
                     </div>
-                  )}
-                </div>
-              </div>
+                  </div>
+                )}
+
             </div>
             <div className="col-sm-1"></div>
           </div>
@@ -118,9 +141,9 @@ class Profile extends Component {
                   </div>
                   <div className="infoText">
                     <h4>{recipe.title}</h4>
-                    <span className="btn" onClick={() => this.deleteRecipe(recipe._id)}>
-                    ✗
-                    </span>
+                    <button className="btn btn-danger" onClick={() => this.deleteRecipe(recipe._id)}>
+                    Delete
+                    </button>
                   </div>
                 </div>
               ))}
