@@ -110,7 +110,7 @@ class AddRecipeModal extends Component {
                             style={{width:550}}
                             onChange={this.handleInputChange}
                             name="image"
-                            placeholder="Image"
+                            placeholder="Image URL"
                           />
                         </div>
                         <br />
@@ -119,7 +119,7 @@ class AddRecipeModal extends Component {
                             style={{width:550}}
                             onChange={this.handleInputChange}
                             name="ingredients"
-                            placeholder="Ingredients"
+                            placeholder="Ingredients (separated by commas)"
                           />
                         </div>
                         <br />
