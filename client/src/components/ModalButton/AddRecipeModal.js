@@ -57,7 +57,7 @@ class AddRecipeModal extends Component {
       API.saveRecipe({
         title: this.state.title,
         user: this.props.user,
-        image: this.state.image,
+        image: this.state.image || "http://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg",
         ingredients: this.state.ingredients.split(', '),
         method: this.state.method
       }, this.props.id)

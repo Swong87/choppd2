@@ -54,6 +54,7 @@ class ModalButton extends Component {
       bio: this.state.bio
     }, this.props.id)
     .then(res => console.log(res),
+      window.location.reload(),
       this.closeModal())
     .catch(err => console.log(err));
   }
